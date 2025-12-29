@@ -17,8 +17,7 @@
             "group": "Getting started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "guides/getting-started/untitled-page"
             ]
           },
           {
