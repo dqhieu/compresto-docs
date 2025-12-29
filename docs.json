@@ -57,20 +57,6 @@
             "pages": [
               "troubleshooting/bad-cpu-type-in-executable"
             ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets",
-              "essentials/settings",
-              "essentials/navigation",
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
           }
         ]
       },
