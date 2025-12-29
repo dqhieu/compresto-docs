@@ -1,0 +1,62 @@
+---
+title: "Deep linking"
+description: "Compresto supports deep linking, allowing you to integrate it into your workflow. Simply trigger a deep link to automatically launch Compresto and compress your files."
+icon: 'link'
+---
+
+## Trigger Compresto via deep linking
+
+The deep link support these parameters:
+
+* `quality` . Possible values: `highest`, `high`, `good`, `medium`, `acceptable` . Default is `high`
+  * For PDF, the param is `pdfQuality` which the possible values are: `best` , `high`, `balance`, `low`
+* `videoFormat` . Possible values: `same`, `mp4`, `webm` . Default is `same`
+* `imageFormat` . Possible values: `same`, `webp`, `jpg`, `png` . Default is `same`
+* `format`. Default value is `same` . If `videoFormat` or `imageFormat` is missing, `format` parameter will be used
+* `removeAudio` . Possible values: `true` , `false` . Default is `false`
+* `fileNameFormat` to customise the output file name format
+* `outputFolder` or `outputPath` to customise the output folder. Default is same as input files.
+* `removeInputFile` for removing input files after compression
+* `subfolderProcessing` for including the files in subfolders recursively. Possible values: `all`, `none`, or a number to set the max depth
+
+### File compression using deep linking
+
+The deeplink format is as follows:
+
+```bash
+compresto://open?path={path_to_your_file_1}|{path_to_your_file_2}
+&[param1]=[value1]&[param2=[value2]
+```
+
+Each file path is divided by `|` character. Each param is divided by `&` character. Below are some example deeplinks
+
+```bash
+// compress a video
+compresto://open?path=/Users/hieudinh/Desktop/video.mp4&quality=medium&videoFormat=mp4&removeAudio=true
+
+// compress an image
+compresto://open?path=/Users/hieudinh/Desktop/image.png&quality=medium&imageFormat=png
+
+// compress video and image
+compresto://open?path=/Users/hieudinh/Desktop/image.png|/Users/hieudinh/Desktop/video.mp4&quality=medium&imageFormat=png&videoFormat=mp4&removeAudio=true
+```
+
+### File importing using deep linking
+
+You can also import files into CompressX for customization before compressing. The deeplink format is as follows:
+
+```bash
+compresto://import?path={path_to_your_file_1}|{path_to_your_file_2}
+```
+
+## Trigger Compresto via command line
+
+In your favourite Terminal, you can trigger compression or importing by using the same deep link with `open` command.
+
+```bash
+// compression
+open "compresto://open?path=/Users/hieudinh/Desktop/test1.mp4|/Users/hieudinh/Desktop/test2.mp4"
+
+// import
+open "compresto://import?path=/Users/hieudinh/Desktop/test1.mp4|/Users/hieudinh/Desktop/test2.mp4"
+```

@@ -35,8 +35,20 @@
           {
             "group": "Customization",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "customization/folder-monitoring",
+              "customization/drop-zone",
+              "customization/conffeti",
+              "customization/cpu-cores-limit",
+              "customization/video-codec",
+              "customization/video-fps",
+              "customization/file-metadata"
+            ]
+          },
+          {
+            "group": "Integration",
+            "pages": [
+              "integrations/deep-linking",
+              "integrations/raycast-extension"
             ]
           },
           {
@@ -51,12 +63,9 @@
               "essentials/markdown",
               "essentials/code",
               "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
+              "essentials/reusable-snippets",
+              "essentials/settings",
+              "essentials/navigation",
               "ai-tools/cursor",
               "ai-tools/claude-code",
               "ai-tools/windsurf"
