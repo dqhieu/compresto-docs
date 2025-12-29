@@ -1,5 +1,100 @@
 ---
 title: "Folder monitoring"
-description: "Monitor a folder for automatic compression"
+description: "Monitor folders for automatic compression"
 icon: 'folder'
 ---
+
+## Overview
+
+Folder monitoring allows Compresto to automatically compress files when they are added to specified folders. This is useful for automating compression workflows.
+
+## Getting Started
+
+<Steps>
+  <Step>
+    Open the Settings window and choose the **Folder Monitoring** tab
+    ![folder_monitoring_1](/images/folder_monitoring_1.png)
+  </Step>
+  <Step>
+    Press **Add folder** to add the folder you want to monitor
+    ![folder_monitoring_2](/images/folder_monitoring_2.png)
+  </Step>
+  <Step>
+    Once the folder is added, press **Settings** to customise the compression settings for that folder
+    ![folder_monitoring_3](/images/folder_monitoring_3.png)
+  </Step>
+  <Step>
+    Configure your compression settings
+    ![folder_monitoring_4](/images/folder_monitoring_4.png)
+  </Step>
+  <Step>
+    Whenever a new file is added to the folder, Compresto will automatically compress it
+    ![folder_monitoring_5](/images/folder_monitoring_5.gif)
+  </Step>
+</Steps>
+
+## Configuration Options
+
+### File Type
+
+Choose which file types to monitor and compress:
+
+| Option | Description |
+|--------|-------------|
+| **Image** | Only compress image files |
+| **Video** | Only compress video files |
+| **Video and image** | Compress both video and image files |
+
+### Video Settings
+
+- **Video quality**: highest, high, good, medium, acceptable
+- **Video resolution**: Keep same or resize
+- **Video format**: same, mp4, webm
+- **Remove audio**: Strip audio track from videos
+
+### Image Settings
+
+- **Image quality**: highest, high, good, medium, acceptable
+- **Image format**: same, webp, jpg, png
+- **Image size**: Keep same, percentage, or fixed pixel width
+
+### Subfolder Processing
+
+Control whether to monitor subfolders:
+
+| Option | Description |
+|--------|-------------|
+| **None** | Only monitor the selected folder |
+| **All** | Monitor all subfolders recursively |
+| **Custom** | Set a maximum folder depth to monitor |
+
+### Output Settings
+
+#### Remove Input File
+
+Enable to automatically delete the original file after compression.
+
+#### Output Folder
+
+| Option | Description |
+|--------|-------------|
+| **Same** | Save compressed files in the same folder as input |
+| **Nested** | Save to a subfolder (default: "compressed") |
+| **Custom** | Choose a specific output folder |
+
+#### Output File Name Format
+
+Customize the output file name using these variables:
+
+| Variable | Description |
+|----------|-------------|
+| `{timestamp}` | Current unix timestamp |
+| `{datetime}` | Date and time in "yyyy-MM-dd'T'HHmmss" format |
+| `{date}` | Date in "yyyy-MM-dd" format |
+| `{time}` | Time in "HHmmss" format |
+| `{quality}` | Quality of the output file |
+| `{resolution}` | Resolution of the output file |
+
+<Note>
+Each monitored folder can have its own independent compression settings.
+</Note>

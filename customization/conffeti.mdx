@@ -1,4 +1,50 @@
 ---
-title: "Conffeti"
+title: "Confetti"
+description: "Show confetti animation when compression finishes"
 icon: 'party-horn'
 ---
+
+## Overview
+
+Compresto can display a fun confetti animation when your files finish compressing. This feature uses Raycast's built-in confetti effect.
+
+## Requirements
+
+- [Raycast](https://www.raycast.com/) must be installed on your Mac
+- Raycast's Confetti extension must be enabled
+
+## Setup
+
+<Steps>
+  <Step>
+    Install Raycast from [raycast.com](https://www.raycast.com/)
+  </Step>
+  <Step>
+    Open Raycast Settings and select the **Extensions** tab
+    ![confetti](/images/confetti_1.png)
+  </Step>
+  <Step>
+    Search for **Confetti** and make sure it's enabled
+    ![confetti](/images/confetti_2.png)
+  </Step>
+  <Step>
+    In Compresto, go to **Settings** > **Appearance** and toggle on **Show confetti when compression finishes**
+    ![confetti](/images/confetti_3.png)
+  </Step>
+  <Step>
+    Done! Confetti will appear whenever compression completes successfully
+    ![confetti](/images/confetti.gif)
+  </Step>
+</Steps>
+
+## How It Works
+
+When compression finishes with at least one successful file, Compresto triggers Raycast's confetti animation via the `raycast://confetti` URL scheme.
+
+<Note>
+If Raycast is not installed or the Confetti extension is not available, the setting will automatically disable itself.
+</Note>
+
+## Test Confetti
+
+You can test if confetti is working by clicking this link: [Test Confetti](raycast://confetti)

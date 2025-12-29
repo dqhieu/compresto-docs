@@ -2,3 +2,42 @@
 title: "CPU cores limit"
 icon: 'microchip'
 ---
+
+## Overview
+
+Compresto allows you to limit the number of CPU cores used during compression. This setting helps balance compression performance with system responsiveness.
+
+## Available Options
+
+| Option | Description |
+|--------|-------------|
+| **2 cores** | Minimal CPU usage, keeps system highly responsive |
+| **4 cores** | Balanced CPU usage |
+| **Max** | Uses all available cores for fastest compression (default) |
+
+## When to Use
+
+Limiting CPU cores can improve system performance during compression by:
+
+- Keeping your Mac responsive while compressing large files
+- Allowing you to continue working on other tasks during compression
+- Reducing system heat and fan noise on intensive compression jobs
+
+## How to Configure
+
+<Steps>
+  <Step>
+    Open Compresto
+  </Step>
+  <Step>
+    Go to **Settings** > **Advanced**
+  </Step>
+  <Step>
+    Adjust the **CPU cores for compression** slider
+    ![cpu cores](/images/cpu_cores_limit.png)
+  </Step>
+</Steps>
+
+<Note>
+Using fewer cores will result in slower compression times, but your system will remain more responsive for other tasks.
+</Note>

@@ -41,7 +41,8 @@
               "customization/cpu-cores-limit",
               "customization/video-codec",
               "customization/video-fps",
-              "customization/file-metadata"
+              "customization/file-metadata",
+              "customization/hardware-acceleration"
             ]
           },
           {
