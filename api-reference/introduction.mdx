@@ -1,33 +1,17 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Everything you need to integrate the Compresto Image Compression API.'
 ---
-
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
-
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API requests require an API key. Include your key in the `X-API-Key` header:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```
+curl -H "X-API-Key: ck_your_api_key" https://api.compresto.app/v1/compress
+```
+
+## Base URL
+```
+https://api.compresto.app
 ```

@@ -40,6 +40,12 @@
             ]
           },
           {
+            "group": "Troubleshooting",
+            "pages": [
+              "troubleshooting/bad-cpu-type-in-executable"
+            ]
+          },
+          {
             "group": "Writing content",
             "pages": [
               "essentials/markdown",
@@ -60,7 +66,7 @@
       },
       {
         "tab": "API reference",
-        "icon": "globe",
+        "icon": "brackets-curly",
         "groups": [
           {
             "group": "API documentation",
@@ -69,12 +75,10 @@
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Endpoints",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/compress",
+              "api-reference/endpoint/usage"
             ]
           }
         ]

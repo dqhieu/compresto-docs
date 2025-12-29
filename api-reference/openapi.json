@@ -1,54 +1,218 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+    "title": "Compresto Image Compression API",
+    "description": "High-performance image compression API with support for JPEG, PNG, and WebP formats.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@compresto.app"
+    }
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://api.compresto.app",
+      "description": "Production server"
     }
   ],
   "security": [
     {
-      "bearerAuth": []
+      "ApiKeyAuth": []
     }
   ],
   "paths": {
-    "/plants": {
+    "/health": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "summary": "Health check",
+        "description": "Check API status. No authentication required.",
+        "operationId": "getHealth",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "API is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/v1/compress": {
+      "post": {
+        "summary": "Compress image",
+        "description": "Compress an image file. Supports multipart file upload, URL fetch, or base64 JSON body.",
+        "operationId": "compressImage",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CompressMultipartRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompressJsonRequest"
+              }
+            }
+          }
+        },
         "parameters": [
           {
-            "name": "limit",
+            "name": "quality",
             "in": "query",
-            "description": "The maximum number of results to return",
+            "description": "Compression quality (1-100). Overrides body parameter.",
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "minimum": 1,
+              "maximum": 100,
+              "default": 80
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format. Overrides body parameter.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "auto",
+                "jpeg",
+                "png",
+                "webp"
+              ],
+              "default": "auto"
+            }
+          },
+          {
+            "name": "maxWidth",
+            "in": "query",
+            "description": "Maximum width in pixels. Preserves aspect ratio.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "maxHeight",
+            "in": "query",
+            "description": "Maximum height in pixels. Preserves aspect ratio.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Compressed image binary",
+            "headers": {
+              "X-Original-Size": {
+                "description": "Original file size in bytes",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Compressed-Size": {
+                "description": "Compressed file size in bytes",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Savings-Percent": {
+                "description": "Compression savings percentage",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Output-Format": {
+                "description": "Output image format",
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "jpeg",
+                    "png",
+                    "webp"
+                  ]
+                }
+              }
+            },
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/webp": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "missing_input": {
+                    "summary": "Missing image input",
+                    "value": {
+                      "error": "bad_request",
+                      "message": "Missing image: provide file upload, url, or base64 image field"
+                    }
+                  },
+                  "invalid_quality": {
+                    "summary": "Invalid quality parameter",
+                    "value": {
+                      "error": "bad_request",
+                      "message": "Quality must be between 1 and 100"
+                    }
+                  },
+                  "url_invalid": {
+                    "summary": "Invalid URL format",
+                    "value": {
+                      "error": "url_invalid",
+                      "message": "Invalid URL format"
+                    }
+                  },
+                  "url_blocked": {
+                    "summary": "URL blocked (SSRF protection)",
+                    "value": {
+                      "error": "url_blocked",
+                      "message": "URL resolves to private/internal address"
+                    }
+                  },
+                  "url_invalid_content": {
+                    "summary": "URL did not return an image",
+                    "value": {
+                      "error": "url_invalid_content",
+                      "message": "URL did not return an image"
+                    }
                   }
                 }
               }
             }
           },
-          "400": {
-            "description": "Unexpected error",
+          "401": {
+            "description": "Unauthorized - missing or invalid API key",
             "content": {
               "application/json": {
                 "schema": {
@@ -56,68 +220,218 @@
                 }
               }
             }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+          },
+          "413": {
+            "description": "File too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "url_too_large": {
+                    "summary": "URL image too large",
+                    "value": {
+                      "error": "url_too_large",
+                      "message": "Image exceeds maximum size of 10MB"
+                    }
+                  }
+                }
               }
             }
           },
-          "required": true
+          "429": {
+            "description": "Rate limit or quota exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Failed to fetch image from URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "url_fetch_failed": {
+                    "summary": "URL fetch failed",
+                    "value": {
+                      "error": "url_fetch_failed",
+                      "message": "Failed to fetch image from URL after 3 attempts"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "URL fetch timed out",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "url_timeout": {
+                    "summary": "URL timeout",
+                    "value": {
+                      "error": "url_timeout",
+                      "message": "URL fetch timed out after 5000ms"
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
+        "tags": [
+          "Compression"
+        ]
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
+    "/v1/demo-compress": {
+      "post": {
+        "summary": "Demo compression",
+        "description": "Compress an image without authentication. Rate limited to 5 requests per hour per IP. Max file size 5MB.",
+        "operationId": "demoCompressImage",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Image file to compress"
+                  }
+                },
+                "required": [
+                  "image"
+                ]
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "Base64-encoded image (with or without data URI prefix)"
+                  }
+                },
+                "required": [
+                  "image"
+                ]
+              }
             }
           }
-        ],
+        },
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
+          "200": {
+            "description": "Compressed image binary",
+            "headers": {
+              "X-Original-Size": {
+                "description": "Original file size in bytes",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Compressed-Size": {
+                "description": "Compressed file size in bytes",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Savings-Percent": {
+                "description": "Compression savings percentage",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Output-Format": {
+                "description": "Output image format",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Demo-Remaining": {
+                "description": "Remaining demo requests this hour",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "image/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
           },
           "400": {
-            "description": "unexpected error",
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "File too large (>5MB for demo)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Demo rate limit exceeded (5/hour)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Compression"
+        ]
+      }
+    },
+    "/v1/usage": {
+      "get": {
+        "summary": "Get usage statistics",
+        "description": "Get current month's usage statistics for the authenticated API key.",
+        "operationId": "getUsage",
+        "responses": {
+          "200": {
+            "description": "Usage statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - missing or invalid API key",
             "content": {
               "application/json": {
                 "schema": {
@@ -126,92 +440,248 @@
               }
             }
           }
-        }
-      }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          }
         },
-        "responses": {
-          "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
-          }
-        }
+        "tags": [
+          "Usage"
+        ]
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "API key for authentication. Get your key at https://compresto.app/dashboard"
+      }
+    },
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "HealthResponse": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
+          "status": {
+            "type": "string",
+            "example": "ok"
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-12-29T10:00:00.000Z"
           }
-        }
+        },
+        "required": [
+          "status",
+          "timestamp"
+        ]
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+      "CompressMultipartRequest": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "format": "binary",
+            "description": "Image file to compress"
           },
-          {
-            "required": [
-              "id"
+          "quality": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 80,
+            "description": "Compression quality"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "jpeg",
+              "png",
+              "webp"
             ],
+            "default": "auto",
+            "description": "Output format"
+          },
+          "maxWidth": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum width in pixels"
+          },
+          "maxHeight": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum height in pixels"
+          }
+        },
+        "required": [
+          "image"
+        ]
+      },
+      "CompressJsonRequest": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "description": "Base64-encoded image (with or without data URI prefix)"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Public image URL (http/https). SSRF protection blocks private IPs."
+          },
+          "quality": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 80,
+            "description": "Compression quality"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "jpeg",
+              "png",
+              "webp"
+            ],
+            "default": "auto",
+            "description": "Output format"
+          },
+          "maxWidth": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum width in pixels"
+          },
+          "maxHeight": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum height in pixels"
+          }
+        },
+        "description": "Provide either 'image' (base64) or 'url'. Priority: url > image."
+      },
+      "UsageResponse": {
+        "type": "object",
+        "properties": {
+          "plan": {
+            "type": "string",
+            "enum": [
+              "free",
+              "pro",
+              "business"
+            ],
+            "description": "Current subscription tier"
+          },
+          "usage": {
             "type": "object",
             "properties": {
-              "id": {
-                "description": "Identification number of the plant",
+              "current": {
                 "type": "integer",
-                "format": "int64"
+                "description": "Number of requests this month"
+              },
+              "limit": {
+                "type": "integer",
+                "description": "Monthly request limit"
+              },
+              "resetAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "When the monthly quota resets"
               }
-            }
+            },
+            "required": [
+              "current",
+              "limit",
+              "resetAt"
+            ]
+          },
+          "totals": {
+            "type": "object",
+            "properties": {
+              "bytesIn": {
+                "type": "integer",
+                "description": "Total bytes uploaded this month"
+              },
+              "bytesOut": {
+                "type": "integer",
+                "description": "Total bytes returned this month"
+              },
+              "savedBytes": {
+                "type": "integer",
+                "description": "Total bytes saved (bytesIn - bytesOut)"
+              },
+              "savedPercent": {
+                "type": "integer",
+                "description": "Overall savings percentage"
+              }
+            },
+            "required": [
+              "bytesIn",
+              "bytesOut",
+              "savedBytes",
+              "savedPercent"
+            ]
           }
+        },
+        "required": [
+          "plan",
+          "usage",
+          "totals"
         ]
       },
       "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
         "type": "object",
         "properties": {
           "error": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "description": "Error code"
           },
           "message": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable error message"
           }
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+        },
+        "required": [
+          "error",
+          "message"
+        ]
+      },
+      "RateLimitError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "rate_limited"
+          },
+          "message": {
+            "type": "string",
+            "example": "Demo limit reached (5/hour). Sign up for free to get 100/month."
+          },
+          "resetAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the rate limit resets"
+          }
+        },
+        "required": [
+          "error",
+          "message",
+          "resetAt"
+        ]
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Health",
+      "description": "API health check"
+    },
+    {
+      "name": "Compression",
+      "description": "Image compression endpoints"
+    },
+    {
+      "name": "Usage",
+      "description": "Usage statistics"
+    }
+  ]
 }
