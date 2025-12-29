@@ -1,55 +1,117 @@
 ---
 title: "Install Ghostscript"
-description: ""
+description: "Set up Ghostscript for PDF compression in Compresto"
 ---
 
-To compress PDFs in Compresto, you must have [Ghostscript](https://www.ghostscript.com/) installed. Developed by Artifex Software, Inc., Ghostscript is the leading PDL conversion and interpreter tool, providing native PDF rendering. 
+## Overview
 
-If you have Homebrew installed, you can simply press the "Install Ghostcript via Homebrew" button.
+[Ghostscript](https://www.ghostscript.com/) is required to compress PDF files in Compresto. Developed by Artifex Software, Inc., Ghostscript is a leading PDF rendering and conversion tool.
+
+<Note>
+If you have Homebrew installed, Compresto will automatically attempt to install Ghostscript when you first try to compress a PDF.
+</Note>
+
+## Quick Install (Homebrew Users)
+
+If you have Homebrew installed, simply click the **Install Ghostscript via Homebrew** button in the app.
 
 ![install_ghostscript](/images/install_ghostscript.png)
 
-If you don't have Homebrew installed, follow one of these methods below to install Ghostscript
+Compresto will run `brew install ghostscript` and automatically configure the path for you.
+
+## Manual Installation
+
+If you don't have Homebrew or prefer manual installation:
 
 <Tabs>
-  <Tab title="Method 1: Install via Homebrew">
+  <Tab title="Homebrew">
     <Steps>
       <Step title="Install Homebrew">
-        https://brew.sh/
+        If you don't have Homebrew, install it from [brew.sh](https://brew.sh/)
+
+        ```bash
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        ```
       </Step>
-      <Step title="Install Ghostscript via Homebrew">
-        https://formulae.brew.sh/formula/ghostscript
+      <Step title="Install Ghostscript">
+        ```bash
+        brew install ghostscript
+        ```
+      </Step>
+      <Step title="Find the path">
+        ```bash
+        which gs
+        ```
+
+        **Expected output:**
+        - Apple Silicon Mac: `/opt/homebrew/bin/gs`
+        - Intel Mac: `/usr/local/bin/gs`
       </Step>
     </Steps>
   </Tab>
-  <Tab title="Method 2: Install via MacPorts">
+  <Tab title="MacPorts">
     <Steps>
       <Step title="Install MacPorts">
-        https://www.macports.org/install.php
+        Download and install from [macports.org/install.php](https://www.macports.org/install.php)
       </Step>
-      <Step title="Install Ghostscript via MacPorts">
-        https://ports.macports.org/port/ghostscript/
+      <Step title="Install Ghostscript">
+        ```bash
+        sudo port install ghostscript
+        ```
+      </Step>
+      <Step title="Find the path">
+        ```bash
+        which gs
+        ```
+
+        **Expected output:** `/opt/local/bin/gs`
       </Step>
     </Steps>
   </Tab>
 </Tabs>
 
+## Configure Path in Compresto
+
+After installation, set the Ghostscript path in Compresto:
+
 <Steps>
-  <Step stepNumber={3} title="Once the installation is done, open the Terminal app and enter `which gs`">
-    You will see the path of Ghostscript printed as the output
-
-    ```
-    $ which gs
-    > /opt/local/bin/gs
-    ```
-
-    ![ghostscript path](/images/ghostscript_path.png)
-    <Note>The output of the `which gs` command may vary depending on the installation method used.</Note>
+  <Step title="Open Settings">
+    Go to **Settings** > **PDF Compression**
   </Step>
-  <Step stepNumber={4} title="Then copy the output and set it as the path for Ghostscript">
+  <Step title="Enter the path">
+    Copy the output from `which gs` and paste it into the **Ghostscript path** field
+
     ![ghostscript path](/images/update_ghostscript_path.png)
   </Step>
-  <Step stepNumber={5} title="You're done">
-    You can now compressing your PDF
+  <Step title="Click Update">
+    Press the **Update** button to save the path
   </Step>
 </Steps>
+
+## Common Paths
+
+| Installation Method | Mac Type | Path |
+|---------------------|----------|------|
+| Homebrew | Apple Silicon | `/opt/homebrew/bin/gs` |
+| Homebrew | Intel | `/usr/local/bin/gs` |
+| MacPorts | Any | `/opt/local/bin/gs` |
+
+## Troubleshooting
+
+### "Ghostscript is not installed" error
+
+This means the Ghostscript path is not configured. Follow the steps above to install and configure Ghostscript.
+
+### Path not working
+
+1. Open Terminal and run `which gs` to verify the correct path
+2. Make sure the path ends with `/gs` (not `/ghostscript`)
+3. Ensure Ghostscript was installed successfully by running `gs --version`
+
+### Homebrew button not appearing
+
+The **Install Ghostscript via Homebrew** button only appears if Homebrew is detected on your system. If you don't see it, install Homebrew first or use MacPorts.
+
+## Disclaimer
+
+Compresto does not own or distribute Ghostscript. Ghostscript is installed separately on your device and is used by Compresto solely for PDF compression.

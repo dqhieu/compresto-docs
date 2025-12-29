@@ -3,15 +3,57 @@ title: 'Introduction'
 description: 'Everything you need to integrate the Compresto Image Compression API.'
 ---
 
+The Compresto API provides programmatic image compression for your applications. Compress images on-the-fly with simple REST endpoints.
+
+## Base URL
+
+```
+https://api.compresto.app
+```
+
 ## Authentication
 
 All API requests require an API key. Include your key in the `X-API-Key` header:
 
-```
+```bash
 curl -H "X-API-Key: ck_your_api_key" https://api.compresto.app/v1/compress
 ```
 
-## Base URL
-```
-https://api.compresto.app
-```
+<Note>
+Get your API key from the [Compresto Dashboard](https://compresto.app/dashboard).
+</Note>
+
+## Available Endpoints
+
+<CardGroup cols={2}>
+  <Card title="POST /v1/compress" icon="image" href="/api-reference/endpoint/compress">
+    Compress an image with quality and format options
+  </Card>
+  <Card title="GET /v1/usage" icon="chart-bar" href="/api-reference/endpoint/usage">
+    Check your API usage statistics
+  </Card>
+</CardGroup>
+
+## Rate Limits
+
+API usage is based on your subscription plan:
+
+| Plan | Monthly Limit |
+|------|---------------|
+| Free | 100 compressions |
+| Pro | 10,000 compressions |
+| Business | 100,000 compressions |
+
+## Response Codes
+
+| Code | Description |
+|------|-------------|
+| `200` | Success |
+| `400` | Bad request - invalid parameters |
+| `401` | Unauthorized - invalid or missing API key |
+| `429` | Rate limit exceeded |
+| `500` | Server error |
+
+## Support
+
+Need help? Contact us at [support@compresto.app](mailto:support@compresto.app) or visit [compresto.app](https://compresto.app).

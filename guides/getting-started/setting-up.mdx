@@ -1,29 +1,75 @@
 ---
 title: "Setting up"
-description: "Follow these steps to get your app ready"
+description: "Follow these steps to get Compresto ready on your Mac"
 ---
 
+When you first launch Compresto, you'll be guided through a quick setup process.
+
 <Steps>
-  <Step title="Start">
-    Press "Get Started" to start setting up
+  <Step title="Welcome">
+    Press **Get Started** to begin the setup process.
 
     ![Welcome](/images/welcome.jpg)
   </Step>
-  <Step title="Install">
-    The app will automatically install all dependencies. Once it's done, press "Next" to proceed to the next step
+  <Step title="Installation">
+    Compresto will automatically download and install all required dependencies. This usually takes a few minutes.
 
-    ![Clean Shot 2025 12 29 At 10 38 47@2x](/images/CleanShot2025-12-29at10.38.47@2x.png)
+    A progress bar shows the installation status. Once complete, press **Next** to continue.
+
+    ![Installation](/images/CleanShot2025-12-29at10.38.47@2x.png)
+
+    <Note>
+    If installation fails, press **Try Again** to retry. Make sure you have an active internet connection.
+    </Note>
   </Step>
-  <Step title="License">
-    Enter the license key you received when purchasing the app and press "Activate" to continue
+  <Step title="License Activation">
+    Enter your license key and press **Activate** to activate Compresto.
 
-    _No license key? Purchase it here: [_https://compresto.app/pricing_](https://compresto.app/pricing)_
+    ![License](/images/CleanShot2025-12-29at10.39.56@2x.png)
 
-    ![Clean Shot 2025 12 29 At 10 39 56@2x](/images/CleanShot2025-12-29at10.39.56@2x.png)
+    <Info>
+    **Don't have a license key?** Purchase one at [compresto.app/pricing](https://compresto.app/pricing)
+    </Info>
+
+    <Tip>
+    **Setapp users**: Your license is automatically managed by Setapp. Simply press **Next** to continue.
+    </Tip>
   </Step>
   <Step title="Done">
-    You are done. Press "Continue" to start using the app 🚀
+    You're all set! Press **Continue** to start compressing files.
 
     ![Done](/images/done.jpg)
   </Step>
 </Steps>
+
+## What Gets Installed
+
+During the installation step, Compresto downloads these components:
+
+- **FFmpeg** - For video and GIF processing
+- **Gifski** - For high-quality GIF creation
+- **pngquant** - For PNG optimization
+- **Ghostscript** - For PDF compression
+
+These tools are installed in the app's support directory and don't affect your system.
+
+## Troubleshooting
+
+### Installation stuck or failed
+
+1. Check your internet connection
+2. Press **Try Again** to restart installation
+3. If the issue persists, restart the app
+
+### License activation failed
+
+- Verify your license key is correct (format: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+- Check that you haven't exceeded the activation limit
+- Ensure you have an active internet connection
+
+### Need to redo setup
+
+If you need to go through the setup again:
+1. Quit Compresto
+2. Delete the app preferences (hold Option while clicking "Compresto" menu > "Reset Preferences")
+3. Relaunch Compresto

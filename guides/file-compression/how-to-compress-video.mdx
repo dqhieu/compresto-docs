@@ -1,23 +1,111 @@
 ---
 title: "How to compress video"
+description: "Reduce video file size while maintaining quality"
 icon: 'video'
 ---
 
+## Quick Start
+
 <Steps>
   <Step>
-    Click on the selection panel, or drop files/folders into it
-    ![Clean Shot 2025 12 29 At 10 45 51@2x](/images/CleanShot2025-12-29at10.45.51@2x.png)
+    Click on the selection panel, or drag and drop files/folders into it
+    ![select files](/images/image.png)
   </Step>
   <Step>
-    Adjust the video options for your desire output
-    ![Clean Shot 2025 12 29 At 10 47 39@2x](/images/CleanShot2025-12-29at10.47.39@2x.png)
+    Adjust the video compression options
+    ![video options](/images/CleanShot2025-12-29at10.47.39@2x.png)
   </Step>
   <Step>
-    Press Compress to start compressing selected videos
-    ![Clean Shot 2025 12 29 At 10 47 58@2x](/images/CleanShot2025-12-29at10.47.58@2x.png)
+    Press **Compress** to start
+    ![compress](/images/CleanShot2025-12-29at10.47.58@2x.png)
   </Step>
   <Step>
-    Once the compression finishes, you will be able to see the details of compressed videos. You can also click Open in Finder to open your video in Finder window
-    ![Clean Shot 2025 12 29 At 10 48 54@2x](/images/CleanShot2025-12-29at10.48.54@2x.png)
+    View compression results and open files in Finder
+    ![results](/images/CleanShot2025-12-29at10.48.54@2x.png)
   </Step>
 </Steps>
+
+## Compression Options
+
+### Video Quality
+
+| Quality | Description | Best For |
+|---------|-------------|----------|
+| **Highest** | Maximum quality, larger files | Archiving, professional use |
+| **High** | Excellent quality (default) | General use |
+| **Good** | Good balance of quality and size | Sharing online |
+| **Medium** | Moderate compression | Social media |
+| **Acceptable** | Higher compression, smaller files | Quick sharing, previews |
+| **File size** | Target a specific file size | Size-constrained uploads |
+
+<Note>
+When "File size" is selected, you can specify your target size in KB, MB, or GB. Compresto will adjust the quality to meet your target.
+</Note>
+
+### Video Resolution
+
+| Resolution | Description |
+|------------|-------------|
+| **Same as input** | Keep original resolution (default) |
+| **4K (2160p)** | 3840 x 2160 pixels |
+| **Full HD (1080p)** | 1920 x 1080 pixels |
+| **HD (720p)** | 1280 x 720 pixels |
+
+### Video Format
+
+| Format | Description |
+|--------|-------------|
+| **Same as input** | Keep original format (default) |
+| **MP4** | Most compatible format, works everywhere |
+| **WebM** | Optimized for web, smaller file sizes |
+| **MOV** | Apple's format, good for macOS/iOS |
+| **GIF** | Convert video to animated GIF |
+
+### Additional Options
+
+#### Remove Audio
+
+Strip the audio track from videos to reduce file size. Useful for:
+- Videos where audio isn't needed
+- Creating silent background videos
+- Reducing file size when audio quality doesn't matter
+
+#### Preserve Transparency
+
+For videos with alpha channels (transparent backgrounds), enable this option to maintain transparency in the output. Available for:
+- WebM format (always enabled)
+- MOV format with alpha channel
+
+<Note>
+When preserving transparency, only Highest, Ultra HD, and Full HD quality options are available.
+</Note>
+
+## Converting Video to GIF
+
+When you select GIF as the output format, additional options appear:
+
+### FPS (Frames Per Second)
+
+Adjust the frame rate of the GIF (10-50 fps). Lower FPS means smaller file size but choppier animation.
+
+### GIF Quality
+
+| Quality | Description |
+|---------|-------------|
+| **Highest** | Best quality, largest file |
+| **High** | Great quality (default) |
+| **Good** | Good balance |
+| **Medium** | Moderate quality |
+| **Acceptable** | Smallest file size |
+
+### GIF Dimension
+
+Resize the GIF to reduce file size. Options include various percentage reductions or specific pixel widths.
+
+## Tips for Best Results
+
+- **For web use**: Choose "Good" quality and MP4 format for best compatibility
+- **For social media**: Use "Medium" quality with appropriate resolution for the platform
+- **For archiving**: Use "Highest" quality to preserve maximum detail
+- **For file size limits**: Use the "File size" option to target a specific size
+- **For silent videos**: Enable "Remove audio" to save additional space
