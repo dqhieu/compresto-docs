@@ -11,7 +11,8 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "macOS Guides",
+        "icon": "laptop",
         "groups": [
           {
             "group": "Getting started",
@@ -48,6 +49,7 @@
       },
       {
         "tab": "API reference",
+        "icon": "globe",
         "groups": [
           {
             "group": "API documentation",
