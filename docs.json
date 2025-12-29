@@ -22,6 +22,12 @@
             ]
           },
           {
+            "group": "File compression",
+            "pages": [
+              "mac-os-guides/file-compression/how-to-compress-video"
+            ]
+          },
+          {
             "group": "Customization",
             "pages": [
               "essentials/settings",
