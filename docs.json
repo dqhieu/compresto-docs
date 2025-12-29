@@ -18,7 +18,8 @@
             "group": "Getting started",
             "pages": [
               "guides/getting-started/introduction",
-              "guides/getting-started/setting-up"
+              "guides/getting-started/setting-up",
+              "guides/getting-started/install-ghostscript"
             ]
           },
           {
@@ -81,8 +82,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
   },
   "navbar": {
     "links": [
