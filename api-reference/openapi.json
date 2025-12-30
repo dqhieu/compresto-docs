@@ -63,52 +63,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "quality",
-            "in": "query",
-            "description": "Compression quality (1-100). Overrides body parameter.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": 80
-            }
-          },
-          {
-            "name": "format",
-            "in": "query",
-            "description": "Output format. Overrides body parameter.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "auto",
-                "jpeg",
-                "png",
-                "webp"
-              ],
-              "default": "auto"
-            }
-          },
-          {
-            "name": "maxWidth",
-            "in": "query",
-            "description": "Maximum width in pixels. Preserves aspect ratio.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          },
-          {
-            "name": "maxHeight",
-            "in": "query",
-            "description": "Maximum height in pixels. Preserves aspect ratio.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Compressed image binary",
@@ -526,7 +480,7 @@
           "url": {
             "type": "string",
             "format": "uri",
-            "description": "Public image URL (http/https). SSRF protection blocks private IPs."
+            "description": "Public image URL (https)."
           },
           "quality": {
             "type": "integer",
