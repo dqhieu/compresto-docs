@@ -609,7 +609,7 @@
           },
           "message": {
             "type": "string",
-            "example": "Demo limit reached (5/hour). Sign up for free to get 100/month."
+            "example": "Demo limit reached (5/hour). Sign up for free to get 500/month."
           },
           "resetAt": {
             "type": "string",
