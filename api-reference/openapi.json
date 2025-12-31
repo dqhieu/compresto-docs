@@ -46,19 +46,19 @@
     "/v1/compress": {
       "post": {
         "summary": "Compress image",
-        "description": "Compress an image file. Supports multipart file upload, URL fetch, or base64 JSON body.",
+        "description": "Compress an image using file upload, URL, or base64-encoded data. Returns the compressed image binary with metadata in response headers.",
         "operationId": "compressImage",
         "requestBody": {
           "required": true,
           "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompressRequest"
+              }
+            },
             "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/CompressMultipartRequest"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CompressJsonRequest"
               }
             }
           }
@@ -431,18 +431,19 @@
       },
       "CompressMultipartRequest": {
         "type": "object",
+        "description": "File upload with compression options as form fields.",
         "properties": {
-          "image": {
+          "file": {
             "type": "string",
             "format": "binary",
-            "description": "Image file to compress"
+            "description": "Image file to compress (PNG, JPEG, or WebP)"
           },
           "quality": {
             "type": "integer",
             "minimum": 1,
             "maximum": 100,
             "default": 80,
-            "description": "Compression quality"
+            "description": "Compression quality (1-100)"
           },
           "format": {
             "type": "string",
@@ -458,20 +459,21 @@
           "maxWidth": {
             "type": "integer",
             "minimum": 1,
-            "description": "Maximum width in pixels"
+            "description": "Maximum width in pixels (maintains aspect ratio)"
           },
           "maxHeight": {
             "type": "integer",
             "minimum": 1,
-            "description": "Maximum height in pixels"
+            "description": "Maximum height in pixels (maintains aspect ratio)"
           }
         },
         "required": [
-          "image"
+          "file"
         ]
       },
-      "CompressJsonRequest": {
+      "CompressRequest": {
         "type": "object",
+        "description": "Provide either 'image' (base64) or 'url'. If both are provided, 'url' takes priority.",
         "properties": {
           "image": {
             "type": "string",
@@ -480,14 +482,14 @@
           "url": {
             "type": "string",
             "format": "uri",
-            "description": "Public image URL (https)."
+            "description": "Public image URL (https)"
           },
           "quality": {
             "type": "integer",
             "minimum": 1,
             "maximum": 100,
             "default": 80,
-            "description": "Compression quality"
+            "description": "Compression quality (1-100)"
           },
           "format": {
             "type": "string",
@@ -503,15 +505,14 @@
           "maxWidth": {
             "type": "integer",
             "minimum": 1,
-            "description": "Maximum width in pixels"
+            "description": "Maximum width in pixels (maintains aspect ratio)"
           },
           "maxHeight": {
             "type": "integer",
             "minimum": 1,
-            "description": "Maximum height in pixels"
+            "description": "Maximum height in pixels (maintains aspect ratio)"
           }
-        },
-        "description": "Provide either 'image' (base64) or 'url'. Priority: url > image."
+        }
       },
       "UsageResponse": {
         "type": "object",
