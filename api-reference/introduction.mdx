@@ -36,12 +36,16 @@ Get your API key from the [Compresto Dashboard](https://compresto.app/dashboard)
 
 ## Rate Limits
 
-API usage is based on your subscription plan:
+The API enforces per-user rate limits based on your subscription plan:
 
-| Plan | Monthly Limit |
-|------|---------------|
-| Free | 100 compressions |
-| Pro | 5,000 compressions |
+| Plan | Rate Limit | Monthly Quota |
+|------|------------|---------------|
+| Free | 60 req/min | 100 requests |
+| Pro | 60 req/min | 5,000 requests |
+
+- **Rate limits** are enforced per user
+- **Monthly quotas** reset on the 1st of each month
+- Use the `/v1/usage` endpoint to check your current usage
 
 ## Response Codes
 
@@ -50,7 +54,7 @@ API usage is based on your subscription plan:
 | `200` | Success |
 | `400` | Bad request - invalid parameters |
 | `401` | Unauthorized - invalid or missing API key |
-| `429` | Rate limit exceeded |
+| `429` | Rate limit exceeded (per-minute) or monthly quota exceeded |
 | `500` | Server error |
 
 ## Support
