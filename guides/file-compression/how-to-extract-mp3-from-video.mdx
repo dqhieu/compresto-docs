@@ -1,0 +1,44 @@
+---
+title: "How to extract MP3 from video"
+description: "Extract audio from video files as high-quality MP3"
+icon: 'music'
+---
+
+## Overview
+
+Compresto can extract the audio track from any video file and save it as a high-quality MP3. This is useful for extracting music, voiceovers, podcasts, or any audio content from video files.
+
+## Quick Start
+
+<Steps>
+  <Step>
+    Click on the selection panel, or drag and drop video files into it
+    ![select files](/images/image.png)
+  </Step>
+  <Step>
+    Select **MP3** as the output format in the video options
+  </Step>
+  <Step>
+    Press **Compress** to start the extraction
+  </Step>
+  <Step>
+    View results and open the MP3 files in Finder
+  </Step>
+</Steps>
+
+## Audio Quality
+
+Compresto uses the highest quality VBR (Variable Bit Rate) encoding via the `libmp3lame` encoder. This produces MP3 files with excellent audio fidelity while keeping file sizes efficient.
+
+| Setting | Value |
+|---------|-------|
+| **Encoder** | libmp3lame |
+| **Quality** | Highest VBR (V0, ~245 kbps average) |
+| **Channels** | Same as source |
+
+## Tips
+
+- **Source audio required**: The video must contain an audio track. Videos with no audio will produce an empty or invalid file.
+- **Supported inputs**: Works with any video format Compresto supports — MP4, MOV, WebM, MKV, etc.
+- **File size**: The output MP3 size depends on the audio duration and complexity, not the video resolution or size.
+- **Batch extraction**: You can extract audio from multiple videos at once — each will produce a separate MP3 file.

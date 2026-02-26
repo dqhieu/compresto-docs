@@ -29,6 +29,7 @@
               "guides/file-compression/how-to-compress-image",
               "guides/file-compression/how-to-compress-gif",
               "guides/file-compression/how-to-convert-video-to-gif",
+              "guides/file-compression/how-to-extract-mp3-from-video",
               "guides/file-compression/how-to-compress-pdf"
             ]
           },
@@ -42,7 +43,8 @@
               "customization/video-codec",
               "customization/video-fps",
               "customization/file-metadata",
-              "customization/hardware-acceleration"
+              "customization/hardware-acceleration",
+              "customization/ai-renaming"
             ]
           },
           {

@@ -1,0 +1,78 @@
+---
+title: "AI renaming"
+description: "Automatically rename compressed files using AI-powered image recognition"
+icon: 'wand-magic-sparkles'
+---
+
+## Overview
+
+AI renaming uses OpenAI's vision API to analyze your compressed images and generate descriptive file names automatically. Instead of keeping generic names like `IMG_0042.jpg`, Compresto can rename files based on their visual content — e.g., `sunset-over-mountain-lake.jpg`.
+
+<Note>
+AI renaming is currently available for **images only**. Video, GIF, and PDF files are not supported yet.
+</Note>
+
+## Setup
+
+<Steps>
+  <Step>
+    Open **Settings** > **AI Renaming**
+  </Step>
+  <Step>
+    Enter your **OpenAI API key**
+
+    You can get an API key from [platform.openai.com](https://platform.openai.com/api-keys).
+  </Step>
+  <Step>
+    Choose your preferred **AI model**
+  </Step>
+  <Step>
+    Select a **naming preset** or create a custom prompt
+  </Step>
+  <Step>
+    Enable **AI Renaming** and compress your images — files will be renamed automatically
+  </Step>
+</Steps>
+
+## AI Models
+
+| Model | Speed | Cost | Best For |
+|-------|-------|------|----------|
+| **GPT-5 Nano** | Fastest | Lowest | Quick batch renaming |
+| **GPT-5 Mini** | Fast | Low | Everyday use |
+| **GPT-5** | Moderate | Medium | Detailed descriptions |
+| **GPT-5.1** | Slower | Higher | High accuracy |
+| **GPT-5.2** | Slowest | Highest | Maximum accuracy |
+
+<Note>
+Faster models cost less per image but may produce less detailed names. For most users, **GPT-5 Mini** offers the best balance of speed and quality.
+</Note>
+
+## Naming Presets
+
+| Preset | Example Output | Description |
+|--------|---------------|-------------|
+| **Descriptive** | `golden-retriever-playing-in-park` | Detailed description of the image content |
+| **SEO Friendly** | `cute-dog-park-outdoor-photography` | Optimized for search engines with relevant keywords |
+| **Short** | `dog-park` | Brief, concise file names |
+| **Technical** | `canine-outdoor-natural-lighting-wide-angle` | Technical photography terminology |
+| **Custom** | *(your prompt)* | Define your own naming rules |
+
+### Custom Prompt
+
+When using the **Custom** preset, you can write your own prompt to control how files are named. For example:
+
+- `"Name the file based on the dominant color and subject"`
+- `"Use product category followed by a brief description"`
+- `"Generate a name suitable for an e-commerce product listing"`
+
+## Max Filename Length
+
+Set a maximum character limit for generated file names to keep them manageable. This prevents overly long names that can cause issues with some file systems or workflows.
+
+## Tips
+
+- **Batch processing**: AI renaming works with batch compression — all images in a batch are renamed individually
+- **API costs**: Each image requires one API call. Monitor your OpenAI usage for large batches
+- **Custom prompts**: Be specific in custom prompts for more consistent results
+- **File extension**: The original file extension is always preserved regardless of the generated name
