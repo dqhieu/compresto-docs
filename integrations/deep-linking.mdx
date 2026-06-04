@@ -14,7 +14,14 @@ The deep link support these parameters:
 * `imageFormat` . Possible values: `same`, `webp`, `jpg`, `png` . Default is `same`
 * `format`. Default value is `same` . If `videoFormat` or `imageFormat` is missing, `format` parameter will be used
 * `removeAudio` . Possible values: `true` , `false` . Default is `false`
-* `fileNameFormat` to customise the output file name format
+* `fileNameFormat` to customise the output file name format. It is appended to the original file name. Supported tokens:
+  * `{timestamp}` - Current unix timestamp
+  * `{datetime}` - Current date and time in `yyyy-MM-dd'T'HHmmss` format
+  * `{date}` - Current date in `yyyy-MM-dd` format
+  * `{time}` - Current time in `HHmmss` format
+  * `{quality}` - Quality of the output file
+  * `{resolution}` - Resolution of the output file
+* `outputFileName` to set an explicit output file name (base name only, without extension). Overrides `fileNameFormat`. When multiple files are processed, a number is appended to avoid collisions (e.g. `name`, `name 1`, `name 2`)
 * `outputFolder` or `outputPath` to customise the output folder. Default is same as input files.
 * `removeInputFile` for removing input files after compression
 * `subfolderProcessing` for including the files in subfolders recursively. Possible values: `all`, `none`, or a number to set the max depth
@@ -39,7 +46,26 @@ compresto://open?path=/Users/hieudinh/Desktop/image.png&quality=medium&imageForm
 
 // compress video and image
 compresto://open?path=/Users/hieudinh/Desktop/image.png|/Users/hieudinh/Desktop/video.mp4&quality=medium&imageFormat=png&videoFormat=mp4&removeAudio=true
+
+// compress a video with a custom output file name
+compresto://open?path=/Users/hieudinh/Desktop/video.mp4&videoFormat=webm&outputFileName=my-clip
 ```
+
+### Output file name results
+
+`fileNameFormat` is appended to the original file name, while `outputFileName` replaces it entirely. When both are provided, `outputFileName` takes precedence and `fileNameFormat` is ignored.
+
+Given an input file `video.mp4`, here are the resulting output file names:
+
+| Parameters | Output file name |
+| --- | --- |
+| `fileNameFormat=_compressed` | `video_compressed.mp4` |
+| `fileNameFormat=-{date}` | `video-2026-06-04.mp4` |
+| `fileNameFormat=-{quality}-{resolution}` | `video-Good-FullHD.mp4` |
+| `outputFileName=my-clip` | `my-clip.mp4` |
+| `fileNameFormat=_compressed` and `outputFileName=my-clip` | `my-clip.mp4` |
+
+The extension follows the chosen `videoFormat` / `imageFormat` (or stays the same as the input when `same`).
 
 ### File importing using deep linking
 
