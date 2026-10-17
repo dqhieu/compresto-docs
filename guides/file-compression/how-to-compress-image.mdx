@@ -36,6 +36,19 @@ icon: 'image'
 | **Good** | Good balance of quality and size | Web images |
 | **Medium** | Moderate compression | Social media |
 | **Acceptable** | Higher compression, smaller files | Thumbnails, previews |
+| **Target file size** | Compress to a specific file size | Upload limits, email attachments |
+
+### Target File Size
+
+Choose **Target file size** to compress images to an exact size instead of a quality level. Enter the size and pick **KB**, **MB**, or **GB** (default 200 KB).
+
+- Output is always saved as **JPG**, so the **Image format** picker is locked while this option is selected
+- Compresto lowers the quality step by step until the file fits
+- If an image can't get small enough, Compresto keeps the smallest version it could make and shows **Couldn't reach target size** next to that file
+
+<Note>
+Target file size is available in the main window, [presets](/customization/presets), and [per-file settings](/customization/per-file-settings). Drop Zone, folder monitoring, and deep links use quality levels instead.
+</Note>
 
 ### Image Size
 
@@ -71,10 +84,17 @@ Compresto supports compressing these image formats:
 - PNG
 - WebP
 - AVIF
-- HEIC
+- HEIC / HEIF
+- DNG
 - TIFF
 - BMP
-- GIF (static)
+- SVG (converted to JPG or PNG)
+
+Animated GIFs have their own options — see [How to compress GIF](/guides/file-compression/how-to-compress-gif).
+
+<Note>
+JPEG and PNG output keeps the original print resolution (DPI), so compressed images place at the same size in layout apps. See [File metadata](/customization/file-metadata).
+</Note>
 
 ## Tips for Best Results
 
@@ -83,3 +103,4 @@ Compresto supports compressing these image formats:
 - **For web optimization**: Use WebP format with "Good" quality
 - **For maximum compression**: Use AVIF format (check browser support)
 - **For batch resizing**: Use "Max long edge" to uniformly resize images
+- **For strict upload limits**: Use "Target file size" to guarantee the file fits

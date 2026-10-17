@@ -1,0 +1,55 @@
+---
+title: "Per-file settings"
+description: "Override compression settings for individual files in a batch"
+icon: 'sliders'
+---
+
+## Overview
+
+When you compress several files at once, they all use the settings in the options sidebar. Per-file settings let you change quality, format, or size for a single file without splitting the batch into separate jobs.
+
+## How to override a file
+
+<Steps>
+  <Step>
+    Add files to the main window
+  </Step>
+  <Step>
+    Hover over a file and click the slider icon (**Custom settings for this file**). In single-file preview, the icon is always visible.
+  </Step>
+  <Step>
+    Change the settings in the popover. Only the options for that file's type are shown.
+  </Step>
+  <Step>
+    Press **Compress**. Overridden settings apply to that file; every other setting follows the sidebar.
+  </Step>
+</Steps>
+
+A dot on the slider icon shows that a file has custom settings.
+
+## Available settings
+
+| File type | Settings you can override |
+|-----------|---------------------------|
+| **Video** | Output format, video quality (including target file size), video resolution, preserve transparency, remove audio |
+| **Video → GIF** | FPS, GIF quality, GIF dimension |
+| **Image** | Image quality (including target file size), image size, image format |
+| **GIF** | GIF quality, GIF dimension |
+| **PDF** | PDF quality |
+| **EPUB** | EPUB quality |
+
+<Note>
+Choosing the target file size option for an image switches its format to JPG.
+</Note>
+
+## Resetting a file
+
+- Press **Reset to global settings** in the popover to clear all overrides for that file
+- Setting an option back to the sidebar's value removes that one override
+
+## Good to know
+
+- Per-file settings last for the current session only. They're cleared when you load new files, clear the list, or remove the file.
+- Per-file settings aren't available in the file tree layout, which Compresto uses for folders or when you add more files than the **Thumbnail preview limit**.
+- Switching [presets](/customization/presets) changes the sidebar settings but keeps your per-file overrides.
+- The slider icon is hidden while compression is running.

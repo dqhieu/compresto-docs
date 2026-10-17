@@ -1,44 +1,78 @@
 ---
 title: "AI renaming"
-description: "Automatically rename compressed files using AI-powered image recognition"
+description: "Automatically rename compressed files using AI-powered image recognition, in the cloud or fully on-device"
 icon: 'wand-magic-sparkles'
 ---
 
 ## Overview
 
-AI renaming uses OpenAI's vision API to analyze your compressed images and generate descriptive file names automatically. Instead of keeping generic names like `IMG_0042.jpg`, Compresto can rename files based on their visual content — e.g., `sunset-over-mountain-lake.jpg`.
+AI renaming uses a vision model to analyze your compressed images and generate descriptive file names automatically. You can use OpenAI in the cloud, or run a local model with [Ollama](https://ollama.com) so nothing leaves your Mac. Instead of keeping generic names like `IMG_0042.jpg`, Compresto can rename files based on their visual content — e.g., `sunset-over-mountain-lake.jpg`.
 
 <Note>
 AI renaming is currently available for **images only**. Video, GIF, and PDF files are not supported yet.
 </Note>
 
-## Setup
+## Choose a Provider
+
+| Provider | Runs on | Needs |
+|----------|---------|-------|
+| **OpenAI** | OpenAI's servers | An OpenAI API key; billed per image |
+| **Ollama (Local)** | Your Mac | Ollama installed with a vision model; free and offline |
+
+## Setup with OpenAI
 
 <Steps>
   <Step>
-    Open **Settings** > **AI Renaming**
+    Open **Settings** > **AI Renaming** and turn on **Enable AI Renaming**
   </Step>
   <Step>
-    Enter your **OpenAI API key**
+    Set **Provider** to **OpenAI**
+  </Step>
+  <Step>
+    Enter your **API Key** and press **Verify**
 
-    You can get an API key from [platform.openai.com](https://platform.openai.com/api-keys).
+    You can get an API key from [platform.openai.com](https://platform.openai.com/api-keys). The key is stored securely in your Keychain.
   </Step>
   <Step>
-    Choose your preferred **AI model**
+    Choose a **Model**
   </Step>
   <Step>
-    Select a **naming preset** or create a custom prompt
-  </Step>
-  <Step>
-    Enable **AI Renaming** and compress your images — files will be renamed automatically
+    Select a **naming style** and compress your images — files will be renamed automatically
   </Step>
 </Steps>
 
-## AI Models
+## Setup with Ollama (offline)
+
+<Steps>
+  <Step>
+    Install [Ollama](https://ollama.com) and pull a vision model, for example:
+    ```bash
+    ollama pull llava
+    ```
+  </Step>
+  <Step>
+    Open **Settings** > **AI Renaming** and turn on **Enable AI Renaming**
+  </Step>
+  <Step>
+    Set **Provider** to **Ollama (Local)**
+  </Step>
+  <Step>
+    Check the server URL (default `http://localhost:11434`) and press **Test**
+  </Step>
+  <Step>
+    Choose a **Model**. Compresto lists the vision models installed in Ollama; press the refresh button after pulling a new one.
+  </Step>
+</Steps>
+
+<Note>
+If the model list shows **No models found**, make sure Ollama is running and that you've pulled a vision-capable model. If no model is selected, files are compressed but not renamed.
+</Note>
+
+## OpenAI Models
 
 | Model | Speed | Cost | Best For |
 |-------|-------|------|----------|
-| **GPT-5 Nano** | Fastest | Lowest | Quick batch renaming |
+| **GPT-5 Nano** (default) | Fastest | Lowest | Quick batch renaming |
 | **GPT-5 Mini** | Fast | Low | Everyday use |
 | **GPT-5** | Moderate | Medium | Detailed descriptions |
 | **GPT-5.1** | Slower | Higher | High accuracy |
@@ -48,7 +82,7 @@ AI renaming is currently available for **images only**. Video, GIF, and PDF file
 Faster models cost less per image but may produce less detailed names. For most users, **GPT-5 Mini** offers the best balance of speed and quality.
 </Note>
 
-## Naming Presets
+## Naming Style
 
 | Preset | Example Output | Description |
 |--------|---------------|-------------|
@@ -68,11 +102,18 @@ When using the **Custom** preset, you can write your own prompt to control how f
 
 ## Max Filename Length
 
-Set a maximum character limit for generated file names to keep them manageable. This prevents overly long names that can cause issues with some file systems or workflows.
+Use the **Max filename length** slider (20–200 characters) to keep generated file names manageable. This prevents overly long names that can cause issues with some file systems or workflows.
+
+## Rename in the Notch
+
+After compressing a single file, you can rename the output yourself right from the notch: click the pencil icon next to the file name, type a new name, and press **Return**. Press **Esc** to cancel. The file extension can't be changed, and the notch stays open while you type.
+
+The notch also shows AI renaming progress after compression finishes.
 
 ## Tips
 
 - **Batch processing**: AI renaming works with batch compression — all images in a batch are renamed individually
-- **API costs**: Each image requires one API call. Monitor your OpenAI usage for large batches
+- **API costs**: With OpenAI, each image requires one API call. Monitor your usage for large batches, or switch to Ollama for free on-device renaming
+- **Privacy**: Images are downscaled before analysis. With Ollama, nothing is sent to a server
 - **Custom prompts**: Be specific in custom prompts for more consistent results
 - **File extension**: The original file extension is always preserved regardless of the generated name

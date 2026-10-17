@@ -8,12 +8,17 @@ icon: 'link'
 
 The deep link support these parameters:
 
-* `quality` . Possible values: `highest`, `high`, `good`, `medium`, `acceptable` . Default is `high`
+<Note>
+Any parameter you leave out uses the value from your in-app settings.
+</Note>
+
+* `quality` . Possible values: `highest`, `high`, `good`, `medium`, `acceptable`
   * For PDF, the param is `pdfQuality` which the possible values are: `best` , `high`, `balance`, `low`
-* `videoFormat` . Possible values: `same`, `mp4`, `webm` . Default is `same`
-* `imageFormat` . Possible values: `same`, `webp`, `jpg`, `png` . Default is `same`
-* `format`. Default value is `same` . If `videoFormat` or `imageFormat` is missing, `format` parameter will be used
-* `removeAudio` . Possible values: `true` , `false` . Default is `false`
+  * For EPUB, the param is `epubQuality` which the possible values are: `best` , `high`, `balance`, `low`. If it's missing, `quality` is used
+* `videoFormat` . Possible values: `same`, `mp4`, `webm`, `mov`, `gif`, `mp3`
+* `imageFormat` . Possible values: `same`, `webp`, `jpg`, `png`, `avif`
+* `format`. If `videoFormat` or `imageFormat` is missing, `format` parameter will be used
+* `removeAudio` . Possible values: `true` , `false`
 * `fileNameFormat` to customise the output file name format. It is appended to the original file name. Supported tokens:
   * `{timestamp}` - Current unix timestamp
   * `{datetime}` - Current date and time in `yyyy-MM-dd'T'HHmmss` format
@@ -22,7 +27,7 @@ The deep link support these parameters:
   * `{quality}` - Quality of the output file
   * `{resolution}` - Resolution of the output file
 * `outputFileName` to set an explicit output file name (base name only, without extension). Overrides `fileNameFormat`. When multiple files are processed, a number is appended to avoid collisions (e.g. `name`, `name 1`, `name 2`)
-* `outputFolder` or `outputPath` to customise the output folder. Default is same as input files.
+* `outputFolder`, `outputPath`, or `outputDirectory` to customise the output folder
 * `removeInputFile` for removing input files after compression
 * `subfolderProcessing` for including the files in subfolders recursively. Possible values: `all`, `none`, or a number to set the max depth
 
@@ -46,6 +51,9 @@ compresto://open?path=/Users/hieudinh/Desktop/image.png&quality=medium&imageForm
 
 // compress video and image
 compresto://open?path=/Users/hieudinh/Desktop/image.png|/Users/hieudinh/Desktop/video.mp4&quality=medium&imageFormat=png&videoFormat=mp4&removeAudio=true
+
+// compress an EPUB
+compresto://open?path=/Users/hieudinh/Desktop/book.epub&epubQuality=balance
 
 // compress a video with a custom output file name
 compresto://open?path=/Users/hieudinh/Desktop/video.mp4&videoFormat=webm&outputFileName=my-clip

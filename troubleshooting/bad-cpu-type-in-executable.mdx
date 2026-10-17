@@ -2,6 +2,12 @@
 title: 'How to resolve error "bad CPU type in executable" on macOS'
 ---
 
+<Note>
+Since version 1.30, Compresto installs a native Apple Silicon (arm64) build of FFmpeg, so this error shouldn't appear. If you see it, update Compresto to the latest version: it detects an older Intel-only FFmpeg and replaces it with the native build automatically.
+
+The steps below install Rosetta, which is only needed for Compresto versions before 1.30.
+</Note>
+
 <Steps>
   <Step>
     Open Terminal (instructions [here](https://support.apple.com/en-ca/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#trml663c6997)).

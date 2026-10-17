@@ -7,23 +7,25 @@ When you first launch Compresto, you'll be guided through a quick setup process.
 
 <Steps>
   <Step title="Welcome">
-    Press **Get Started** to begin the setup process.
+    Choose your **Language** if you'd like to use Compresto in something other than your Mac's language, then press **Get Started** to begin the setup process.
+
+    Changing the language asks you to restart Compresto. See [App language](/customization/language).
 
     ![Welcome](/images/welcome.jpg)
   </Step>
   <Step title="Installation">
-    Compresto will automatically download and install all required dependencies. This usually takes a few minutes.
+    Compresto downloads and sets up its compression tools. This takes a few minutes, and you only do it once.
 
-    A progress bar shows the installation status. Once complete, press **Next** to continue.
+    A progress indicator shows the installation status. When you see **Compression tools are ready.**, press **Continue**.
 
     ![Installation](/images/CleanShot2025-12-29at10.38.47@2x.png)
 
     <Note>
-    If installation fails, press **Try Again** to retry. Make sure you have an active internet connection.
+    If you see **The setup didn't finish.**, press **Try Again** to retry. Make sure you have an active internet connection.
     </Note>
   </Step>
   <Step title="License Activation">
-    Enter your license key and press **Activate** to activate Compresto.
+    Paste the license key from your purchase email and press **Activate**.
 
     ![License](/images/CleanShot2025-12-29at10.39.56@2x.png)
 
@@ -32,11 +34,11 @@ When you first launch Compresto, you'll be guided through a quick setup process.
     </Info>
 
     <Tip>
-    **Setapp users**: Your license is automatically managed by Setapp. Simply press **Next** to continue.
+    **Setapp users**: Your license comes with Setapp. Simply press **Continue**.
     </Tip>
   </Step>
   <Step title="Done">
-    You're all set! Press **Continue** to start compressing files.
+    You're all set! Press **Start compressing** to open the main window.
 
     ![Done](/images/done.jpg)
   </Step>
@@ -46,12 +48,15 @@ When you first launch Compresto, you'll be guided through a quick setup process.
 
 During the installation step, Compresto downloads these components:
 
-- **FFmpeg** - For video and GIF processing
+- **FFmpeg** - For video and GIF processing. Apple Silicon Macs get a native arm64 build, so Rosetta isn't needed
 - **Gifski** - For high-quality GIF creation
 - **pngquant** - For PNG optimization
-- **Ghostscript** - For PDF compression
 
-These tools are installed in the app's support directory and don't affect your system.
+These tools are installed in a private folder and don't affect your system.
+
+<Note>
+PDF compression also needs **Ghostscript**, which is set up separately. If you use Homebrew, Compresto installs it for you automatically. Otherwise, see [Install Ghostscript](/guides/getting-started/install-ghostscript).
+</Note>
 
 ## Troubleshooting
 

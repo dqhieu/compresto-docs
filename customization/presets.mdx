@@ -1,0 +1,82 @@
+---
+title: "Compression presets"
+description: "Save your favorite compression settings and apply them with one click"
+icon: 'bookmark'
+---
+
+## Overview
+
+Presets let you save a set of compression settings under a name and switch to it with one click. Compresto ships with three built-in presets, and you can save as many of your own as you like.
+
+## Using a preset
+
+<Steps>
+  <Step>
+    Add files to the main window. The **Preset** row appears in the options sidebar once files are added.
+  </Step>
+  <Step>
+    Open the **Preset** picker and choose a preset from **Built-in** or **My Presets**
+  </Step>
+  <Step>
+    Press **Compress**
+  </Step>
+</Steps>
+
+Choosing a preset applies its settings immediately. If you change any of those settings afterwards, the picker switches back to **Custom**.
+
+<Note>
+The Preset picker is disabled while compression is running.
+</Note>
+
+## Built-in presets
+
+| Preset | Image | Video | GIF | PDF & EPUB |
+|--------|-------|-------|-----|------------|
+| **High Quality** | Highest, same format | Highest, same format and resolution | Highest, same dimension | Best |
+| **Web Optimized** | Good, WebP | Good, MP4, Full HD | Good, 50% | Balance |
+| **Smallest File Size** | Acceptable, WebP | Acceptable, MP4, audio removed | Acceptable, 50% | Low |
+
+Built-in presets can't be edited or deleted.
+
+## Saving your own preset
+
+<Steps>
+  <Step>
+    Adjust the compression options in the main window
+  </Step>
+  <Step>
+    Press **Save** next to the Preset picker
+  </Step>
+  <Step>
+    Enter a **Preset name** and press **Save**
+  </Step>
+</Steps>
+
+The new preset is selected right away and appears under **My Presets**.
+
+## What a preset includes
+
+| File type | Saved settings |
+|-----------|----------------|
+| **Image** | Quality, format, size |
+| **Video** | Quality, format, resolution, remove audio |
+| **GIF** | Quality, dimension |
+| **PDF** | Quality |
+| **EPUB** | Quality |
+
+Output folder, file name format, **Remove input file(s)**, FPS and target file size are not part of a preset.
+
+## Managing presets
+
+Go to **Settings** > **Presets** to see all presets. Each one shows a short summary of its settings.
+
+- **Edit**: Opens an editor where you can rename the preset and change its image, video, GIF, PDF, and EPUB settings. Press **Done** to save.
+- **Delete**: Press the trash icon and confirm. If the deleted preset was selected, the picker switches back to **Custom**.
+
+## Presets in Drop Zone
+
+Drop Zone can compress with a preset too. In **Settings** > **Drop Zone**, set **Compression settings** to **Preset**, then choose the preset to use. See [Drop Zone](/customization/drop-zone#compression-settings-type) for details.
+
+<Tip>
+Need different settings for just one file in a batch? Use [per-file settings](/customization/per-file-settings) instead of switching presets.
+</Tip>

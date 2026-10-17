@@ -1,0 +1,52 @@
+---
+title: "Clipboard compression"
+description: "Automatically compress files and images as soon as you copy them"
+icon: 'clipboard'
+---
+
+## Overview
+
+When clipboard compression is on, Compresto watches your clipboard. Copy a file in Finder or take a screenshot to the clipboard, and Compresto compresses it in the background and puts the compressed file back on the clipboard, ready to paste.
+
+## How to enable
+
+<Steps>
+  <Step>
+    Open **Settings** > **Folder Monitoring**
+  </Step>
+  <Step>
+    Turn on **Auto-compress clipboard contents**
+  </Step>
+</Steps>
+
+The setting is off by default. Once enabled, it stays on across app launches.
+
+## What gets compressed
+
+| You copy | What Compresto does |
+|----------|---------------------|
+| **Files in Finder** | Compresses supported files from their original location |
+| **Image data** (e.g. a screenshot copied to the clipboard) | Saves it as PNG, then compresses it |
+| **PDF, GIF, or video data** | Saves it to a temporary file, then compresses it |
+
+Supported file types: video, image, GIF, PDF, and EPUB.
+
+<Note>
+PDFs are skipped if [Ghostscript](/guides/getting-started/install-ghostscript) isn't set up.
+</Note>
+
+## Settings used
+
+Clipboard compression uses your [Drop Zone](/customization/drop-zone) settings, including its **Compression settings** mode and output folder. If Drop Zone is set to a [preset](/customization/presets), clipboard compression uses that preset too.
+
+Clipboard compression never removes the original file, and it doesn't use target file size.
+
+## After compression
+
+- The compressed files are copied back to the clipboard, so you can paste them right away
+- A notification tells you where the files were saved
+- If [AI renaming](/customization/ai-renaming) renames the output, the clipboard is updated with the new file
+
+<Tip>
+Copy several files quickly and Compresto groups them into one batch. Files copied while a job is running are queued.
+</Tip>

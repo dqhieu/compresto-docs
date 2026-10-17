@@ -43,30 +43,44 @@ Choose which file types to monitor and compress:
 |--------|-------------|
 | **Image** | Only compress image files |
 | **Video** | Only compress video files |
-| **Video and image** | Compress both video and image files |
+| **Video and image** | Compress both video and image files (default) |
+
+<Note>
+Folder monitoring handles images and videos only. GIF, PDF, and EPUB files in a monitored folder are ignored. Hidden files and in-progress Chrome downloads (`.crdownload`) are skipped too.
+</Note>
+
+### Wait for File to Finish Writing
+
+Large downloads, exports, and network transfers can arrive in pieces. Set **Wait for file to finish writing** (0–60 seconds) and Compresto waits until the file size stays the same for that long before compressing it. Type a value and press **Update**.
+
+The default is **0**, which compresses new files right away.
+
+<Tip>
+Use 2–5 seconds for folders that receive files over the network or from apps that write in chunks.
+</Tip>
 
 ### Video Settings
 
 - **Video quality**: highest, high, good, medium, acceptable
-- **Video resolution**: Keep same or resize
-- **Video format**: same, mp4, webm
+- **Video resolution**: same as input, 4K, Full HD, HD, max width, max height, max long edge, max short edge
+- **Video format**: same, mp4, webm, mov
 - **Remove audio**: Strip audio track from videos
 
 ### Image Settings
 
 - **Image quality**: highest, high, good, medium, acceptable
-- **Image format**: same, webp, jpg, png
-- **Image size**: Keep same, percentage, or fixed pixel width
+- **Image format**: same, jpg, png, webp, avif
+- **Image size**: same as input, percentage, max width, max height, max long edge, max short edge
 
 ### Subfolder Processing
 
-Control whether to monitor subfolders:
+Use **Include subfolders** to control how deep Compresto watches:
 
 | Option | Description |
 |--------|-------------|
-| **None** | Only monitor the selected folder |
-| **All** | Monitor all subfolders recursively |
-| **Custom** | Set a maximum folder depth to monitor |
+| **None** | Only monitor the selected folder (default) |
+| **Custom** | Monitor subfolders up to a **Max depth** you set |
+| **All** | Monitor all subfolders, at any depth |
 
 ### Output Settings
 
@@ -78,8 +92,8 @@ Enable to automatically delete the original file after compression.
 
 | Option | Description |
 |--------|-------------|
-| **Same** | Save compressed files in the same folder as input |
-| **Nested** | Save to a subfolder (default: "compressed") |
+| **Same as input** | Save compressed files in the same folder as input |
+| **Subfolder** | Save to a subfolder (default: "compressed") |
 | **Custom** | Choose a specific output folder |
 
 #### Output File Name Format
@@ -95,6 +109,12 @@ Customize the output file name using these variables:
 | `{quality}` | Quality of the output file |
 | `{resolution}` | Resolution of the output file |
 
+Leave the field empty to use the global file name format.
+
 <Note>
 Each monitored folder can have its own independent compression settings.
 </Note>
+
+## Clipboard Compression
+
+The **Folder Monitoring** tab also has **Auto-compress clipboard contents**, which compresses files and images as soon as you copy them. See [Clipboard compression](/customization/clipboard-compression).

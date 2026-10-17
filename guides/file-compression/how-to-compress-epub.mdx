@@ -1,0 +1,74 @@
+---
+title: "How to compress EPUB"
+description: "Shrink ebooks by compressing the images inside them"
+icon: 'book'
+---
+
+## Overview
+
+Most of an EPUB's size comes from its images. Compresto compresses the JPEG, PNG, and WebP images inside the book and leaves the text, styles, and fonts untouched, so the book reads exactly as before, only smaller.
+
+Opening an EPUB in Finder still opens it in your reader. To compress one, add it to Compresto.
+
+## Quick Start
+
+<Steps>
+  <Step>
+    Click on the selection panel to select EPUB files, or drag and drop them into it
+  </Step>
+  <Step>
+    Choose an **EPUB quality** level
+  </Step>
+  <Step>
+    Press **Compress** to start
+  </Step>
+  <Step>
+    View compression results and open files in Finder
+  </Step>
+</Steps>
+
+## Quality Options
+
+| Quality | Image quality | Max image size (long edge) | Best For |
+|---------|---------------|----------------------------|----------|
+| **Best** | High | Original size | Illustrated books, photo books |
+| **High** | Good | 2048 px | Reading on large screens |
+| **Balance** | Medium (default) | 1536 px | Everyday reading, sharing |
+| **Low** | Lower | 1024 px | Smallest file size, phones |
+
+Images are only scaled down, never up. Each image keeps its format and file name, so links inside the book keep working.
+
+## What gets compressed
+
+- **Compressed**: JPEG, PNG, and WebP images
+- **Left unchanged**: text, CSS, fonts, GIF and SVG images, and everything else in the book
+
+<Note>
+Compresto never makes a book bigger. An image is only replaced if the compressed version is smaller, and if the whole book doesn't get smaller, the original is kept.
+</Note>
+
+## Copy-protected books
+
+Books protected with DRM have encrypted images, which can't be compressed. Compresto leaves these files unchanged and shows a message explaining why.
+
+Books that only encrypt their fonts (common with font obfuscation) are not treated as copy-protected and can still be compressed.
+
+## Where EPUB compression is available
+
+- Main window
+- [Drop Zone](/customization/drop-zone)
+- [Clipboard compression](/customization/clipboard-compression)
+- [Presets](/customization/presets)
+- [Per-file settings](/customization/per-file-settings)
+- [Deep links](/integrations/deep-linking) with the `epubQuality` parameter
+
+<Note>
+Folder monitoring doesn't support EPUB files.
+</Note>
+
+## Tips for Best Results
+
+- **For comics and photo books**: Start with **High** to keep artwork sharp
+- **For text-heavy novels**: **Balance** or **Low** works well; the savings come from cover and inline images
+- **For sending by email**: Use **Low** for the smallest file
+- **If a book barely shrinks**: It likely has few images, or they're already well compressed
