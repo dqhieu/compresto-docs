@@ -35,6 +35,8 @@ AI renaming is currently available for **images only**. Video, GIF, and PDF file
   </Step>
   <Step>
     Choose a **Model**
+
+    Click **Compare model pricing** below the picker to see every model's price side by side. Clicking a row in the table selects that model.
   </Step>
   <Step>
     Select a **naming style** and compress your images — files will be renamed automatically
@@ -70,17 +72,26 @@ If the model list shows **No models found**, make sure Ollama is running and tha
 
 ## OpenAI Models
 
-| Model | Speed | Cost | Best For |
-|-------|-------|------|----------|
-| **GPT-5 Nano** (default) | Fastest | Lowest | Quick batch renaming |
-| **GPT-5 Mini** | Fast | Low | Everyday use |
-| **GPT-5** | Moderate | Medium | Detailed descriptions |
-| **GPT-5.1** | Slower | Higher | High accuracy |
-| **GPT-5.2** | Slowest | Highest | Maximum accuracy |
+All models accept images. Prices are OpenAI's standard rates in USD; the last column is Compresto's estimate for renaming 1,000 images.
+
+| Model | Input / 1M tokens | Output / 1M tokens | ≈ 1,000 images |
+|-------|------------------:|-------------------:|---------------:|
+| **GPT-6 Luna** | $0.10 | $0.50 | $0.051 |
+| **GPT-6.1 Sol** | $2.00 | $10.00 | $2.316 |
+| **GPT-6 Astra** | $10.00 | $50.00 | $11.58 |
+| **GPT-5 Nano** (default) | $0.05 | $0.40 | $0.044 |
+| **GPT-5 Mini** | $0.25 | $2.00 | $0.202 |
+| **GPT-5** | $1.25 | $10.00 | $0.712 |
+| **GPT-5.1** | $1.25 | $10.00 | $0.412 |
+| **GPT-5.2** | $1.75 | $14.00 | $0.994 |
+
+The estimates assume each image is sent at 512 px with the naming prompt and a short reply, so your actual cost can vary. Check [OpenAI's pricing page](https://developers.openai.com/api/docs/pricing) for current rates.
 
 <Note>
-Faster models cost less per image but may produce less detailed names. For most users, **GPT-5 Mini** offers the best balance of speed and quality.
+For most users, **GPT-6 Luna** or **GPT-5 Nano** is plenty for naming files and costs only a few cents per 1,000 images. Larger models like **GPT-6.1 Sol** and **GPT-6 Astra** cost far more per image.
 </Note>
+
+To keep costs down, Compresto downscales each image to at most 512 px before sending it and asks every model to use as little reasoning as it supports.
 
 ## Naming Style
 
@@ -113,7 +124,7 @@ The notch also shows AI renaming progress after compression finishes.
 ## Tips
 
 - **Batch processing**: AI renaming works with batch compression — all images in a batch are renamed individually
-- **API costs**: With OpenAI, each image requires one API call. Monitor your usage for large batches, or switch to Ollama for free on-device renaming
-- **Privacy**: Images are downscaled before analysis. With Ollama, nothing is sent to a server
+- **API costs**: With OpenAI, each image requires one API call. Use **Compare model pricing** to estimate a batch before you run it, or switch to Ollama for free on-device renaming
+- **Privacy**: Images are downscaled to at most 512 px before analysis. With Ollama, nothing is sent to a server
 - **Custom prompts**: Be specific in custom prompts for more consistent results
 - **File extension**: The original file extension is always preserved regardless of the generated name
