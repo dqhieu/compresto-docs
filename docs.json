@@ -22,16 +22,20 @@
             "pages": [
               "guides/getting-started/introduction",
               "guides/getting-started/setting-up",
+              "customization/license",
               "guides/getting-started/install-ghostscript"
             ]
           },
           {
             "group": "File compression",
             "pages": [
+              "guides/file-compression/adding-files",
+              "guides/file-compression/output-options",
               "guides/file-compression/how-to-compress-video",
               "guides/file-compression/how-to-compress-image",
               "guides/file-compression/how-to-compress-gif",
               "guides/file-compression/how-to-convert-video-to-gif",
+              "guides/file-compression/how-to-trim-video",
               "guides/file-compression/how-to-extract-mp3-from-video",
               "guides/file-compression/how-to-compress-pdf",
               "guides/file-compression/how-to-compress-epub",
@@ -52,6 +56,7 @@
           {
             "group": "Customization",
             "pages": [
+              "customization/general-settings",
               "customization/language",
               "customization/notifications",
               "customization/sleep-after-compression",

@@ -1,24 +1,26 @@
 ---
 title: "Hardware acceleration"
-description: "Use your Mac's GPU to speed up video compression"
+description: "Use your Mac's media engine to speed up reading videos during compression"
 icon: 'display'
 ---
 
 ## Overview
 
-Hardware acceleration uses your Mac's GPU to speed up video encoding and decoding. When enabled, Compresto leverages Apple's VideoToolbox framework to significantly reduce compression time.
+With **Automatic hardware acceleration** on, Compresto lets FFmpeg pick the best hardware decoder on your Mac (such as Apple's VideoToolbox) to read your input videos. Decoding on dedicated hardware takes work off the CPU, which speeds up compression, especially for high-resolution H.264 and HEVC sources.
+
+Encoding (writing the compressed video) still uses the [video codec](/customization/video-codec) you choose, so the output quality and file size are the same with this setting on or off.
 
 ## Benefits
 
-- **Faster compression**: GPU encoding is typically 2-5x faster than CPU-only encoding
-- **Lower CPU usage**: Frees up your CPU for other tasks during compression
-- **Reduced heat**: Less CPU load means less heat generation
+- **Faster compression**: Less time spent decoding the source video
+- **Lower CPU usage**: Frees up CPU time for encoding and for your other apps
+- **Reduced heat**: Less CPU load means less heat and fan noise
 
 ## How It Works
 
-When enabled, Compresto automatically detects available hardware acceleration capabilities on your Mac and uses them for video processing. This works with:
+Compresto checks what hardware decoding your Mac supports and uses it when it can. If a video can't be decoded in hardware, Compresto falls back to software decoding automatically. This works with:
 
-- Apple Silicon Macs (M1, M2, M3, M4 series)
+- Apple Silicon Macs
 - Intel Macs with integrated or discrete GPUs
 
 ## How to Configure
@@ -32,18 +34,13 @@ When enabled, Compresto automatically detects available hardware acceleration ca
   </Step>
   <Step>
     Toggle **Automatic hardware acceleration** on or off
-    ![hardware acceleration](/images/hardware_acceleration.png)
+    ![hardware acceleration](/images/settings-advanced.png)
   </Step>
 </Steps>
 
 ## When to Disable
 
-In most cases, hardware acceleration should be left enabled. However, you might want to disable it if:
+In most cases, hardware acceleration should be left on. However, you might want to turn it off if:
 
-- You experience video quality issues with specific files
+- A specific video fails to compress or shows visual glitches
 - You encounter compatibility problems with certain video formats
-- You prefer maximum quality over speed (software encoding can sometimes produce slightly better quality at the same bitrate)
-
-<Note>
-Hardware acceleration is enabled by default. Most users should leave this setting on for the best performance.
-</Note>

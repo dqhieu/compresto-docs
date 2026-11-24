@@ -28,6 +28,19 @@ mint dev
 
 View your local preview at `http://localhost:3000`.
 
+## Screenshots
+
+Put app screenshots on a background so the window doesn't blend into the page in light mode:
+
+1. Capture the window with transparent corners and no macOS shadow: `screencapture -o -l <window-id> window.png` (or press ⌘⇧4, then Space, and hold Option while you click the window)
+2. Frame it into `images/`:
+
+```
+python3 scripts/frame-screenshot.py window.png images/my-screenshot.png
+```
+
+Several at once: `python3 scripts/frame-screenshot.py a.png b.png --out-dir images`. The script needs Pillow (`pip3 install pillow`). Keep the unframed original outside `images/`, since framing an already framed image adds a second border.
+
 ## Publishing changes
 
 Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.

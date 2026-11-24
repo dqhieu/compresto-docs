@@ -1,6 +1,6 @@
 ---
 title: "Video codec"
-description: "Choose between H.264 and H.265/HEVC encoding for video compression"
+description: "Choose H.264, H.265/HEVC, or H.266/VVC encoding for video compression"
 icon: 'file-video'
 ---
 
@@ -12,8 +12,13 @@ Compresto allows you to choose the video encoding codec used during compression.
 
 | Codec | Description |
 |-------|-------------|
-| **H.264 (Recommended)** | Widely compatible codec supported by virtually all devices and platforms |
+| **H.264 (Recommended)** | Widely compatible codec supported by virtually all devices and platforms (default) |
 | **H.265/HEVC** | Newer codec with better compression efficiency but limited compatibility |
+| **H.266/VVC (Experimental)** | Smallest files, but much slower to encode, and most players can't open it yet |
+
+<Note>
+The codec applies to MP4 and MOV output. WebM output always uses VP9 video with Opus audio, whichever codec you pick.
+</Note>
 
 ## Comparison
 
@@ -31,6 +36,17 @@ Compresto allows you to choose the video encoding codec used during compression.
 - **Processing speed**: Slower encoding
 - **Best for**: Archiving, when file size is critical, newer Apple devices
 
+### H.266/VVC (Experimental)
+
+- **Compatibility**: Very limited - macOS (QuickTime, Finder previews) and most players can't play H.266 yet
+- **Compression**: The smallest files of the three at similar quality
+- **Processing speed**: Much slower encoding
+- **Best for**: Experiments and archives you'll play with a player that supports VVC
+
+<Warning>
+H.266/VVC only appears in the list when the installed FFmpeg can encode it. If it isn't supported, compression fails with **Your FFmpeg build doesn't support H.266/VVC encoding**. Switch back to H.264 or H.265.
+</Warning>
+
 ## How to Configure
 
 <Steps>
@@ -42,12 +58,12 @@ Compresto allows you to choose the video encoding codec used during compression.
   </Step>
   <Step>
     Select your preferred codec from the **Video encoding codec** dropdown
-    ![video codec](/images/video_codec.png)
+    ![video codec](/images/settings-advanced.png)
   </Step>
 </Steps>
 
 <Note>
-H.264 is recommended for most users due to its wide compatibility. Only use H.265/HEVC if you specifically need smaller file sizes and your target devices support it.
+H.264 is recommended for most users due to its wide compatibility. Only use H.265/HEVC if you specifically need smaller file sizes and your target devices support it. Use H.266/VVC only if you know your player supports it.
 </Note>
 
 ## Learn More

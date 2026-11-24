@@ -1,0 +1,66 @@
+---
+title: "License"
+description: "Check your license, manage your devices, and move Compresto to another Mac"
+icon: 'key'
+---
+
+## Activate
+
+Paste the license key from your purchase email into **Settings** > **License** and press **Activate**. You can also do this during [setup](/guides/getting-started/setting-up).
+
+Don't have a key? Get one at [compresto.app/pricing](https://compresto.app/pricing).
+
+<Tip>
+**Setapp users**: Your license is managed by Setapp, so there's no key to enter.
+</Tip>
+
+## What You'll See
+
+| Row | What it shows |
+|-----|---------------|
+| **License status** | Whether your license is valid. Press the refresh button to check again |
+| **License expiry** or **Updates available until** | For one-time licenses: **Never**, or the date your free updates end |
+| **Renews on** / **Cancels on** | For subscriptions: the next renewal date, or when the subscription ends |
+| **License usage** | How many of your license's devices are activated |
+| **License key** and **Email** | Your key and purchase email, with copy buttons |
+| **Provider** | Where you bought the license |
+
+If your update period has ended, the License tab says **You're no longer able to receive new updates**. Press **Renew license** to get updates again.
+
+## Manage License
+
+Press **Manage license** to open [compresto.app/manage-license](https://compresto.app/manage-license) with your key already filled in. There you can see your devices, remove ones you no longer use, and manage your purchase.
+
+## Move to Another Mac
+
+<Steps>
+  <Step>
+    On the old Mac, open **Settings** > **License** and press **Unlink device**. This frees up one device on your license
+  </Step>
+  <Step>
+    On the new Mac, install Compresto and activate it with the same key
+  </Step>
+</Steps>
+
+<Note>
+Lost access to the old Mac? Remove it at [compresto.app/manage-license](https://compresto.app/manage-license) instead.
+</Note>
+
+## Using the Command-Line Tool
+
+The Mac app and the [compresto command-line tool](/cli/introduction) share one activation on the same Mac, so together they count as one device:
+
+- If you signed in to the command-line tool first, the app reuses that activation when you activate it with the same key, or when it launches without a license
+- **Unlink device** in the app also signs the command-line tool out on that Mac
+
+<Note>
+The app reusing the command-line tool's activation, and signing it out on unlink, is new after version 1.32. In 1.32, activate the app first, then run `compresto auth login`.
+</Note>
+
+See [CLI license](/cli/license) for the command-line side.
+
+## Troubleshooting
+
+- **Key not accepted**: Copy the key straight from your purchase email and make sure it's a Compresto key (format `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`)
+- **Activation limit reached**: Unlink a device you no longer use, or remove it at [compresto.app/manage-license](https://compresto.app/manage-license)
+- **Offline**: Activating and checking your license need an internet connection. If a check fails because you're offline, your license stays active
