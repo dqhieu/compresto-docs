@@ -77,6 +77,35 @@
         ]
       },
       {
+        "tab": "CLI",
+        "icon": "terminal",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "cli/introduction",
+              "cli/installation"
+            ]
+          },
+          {
+            "group": "Usage",
+            "pages": [
+              "cli/compress-files",
+              "cli/options",
+              "cli/output-files",
+              "cli/scripting"
+            ]
+          },
+          {
+            "group": "Account and help",
+            "pages": [
+              "cli/license",
+              "cli/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "API reference",
         "icon": "brackets-curly",
         "groups": [

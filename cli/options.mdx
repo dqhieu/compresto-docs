@@ -1,0 +1,74 @@
+---
+title: "Options"
+description: "Every option of the compresto command for quality, video, images and output files."
+icon: 'sliders'
+---
+
+Run `compresto --help` to see this list in the Terminal.
+
+## Quality and format
+
+| Option | What it does |
+| --- | --- |
+| `-q`, `--quality` | `highest`, `high`, `good`, `medium` or `acceptable`. The default is `high` for videos and GIFs, and `highest` for images |
+| `--pdf-quality` | `best`, `high`, `balance` or `low`. The default is `balance` |
+| `--target-size 8MB` | Aim for a file size. Videos and JPEG images only |
+| `--to` | Convert to `mp4`, `mov`, `webm`, `gif` or `mp3` (videos), or `jpg`, `png`, `webp` or `avif` (images) |
+
+## Video
+
+| Option | What it does |
+| --- | --- |
+| `--codec h264` or `h265` | Video codec. H.264 is the default |
+| `--crf 0-51` | Exact quality value for video, lower is better. Overrides `--quality` |
+| `--resolution 2160`, `1080` or `720` | Scale the video down to this height |
+| `--max-width`, `--max-height`, `--max-long-edge` | Limit a dimension in pixels. Never upscales |
+| `--fps` | Limit the frame rate |
+| `--no-audio` | Remove the audio |
+| `--start`, `--end` | Trim the video. Use seconds or `HH:MM:SS` |
+
+## Images and GIFs
+
+| Option | What it does |
+| --- | --- |
+| `--resize 50%` | Resize by a percentage |
+| `--max-width`, `--max-height`, `--max-long-edge` | Limit a dimension in pixels. Never upscales |
+| `--gif-fps` | Frame rate when converting a video to GIF. The default is 30 |
+| `--gif-width` | Width of the GIF in pixels |
+
+## Output
+
+| Option | What it does |
+| --- | --- |
+| `-o`, `--output` | Output file (for one input) or output folder |
+| `--suffix` | Text added to the file name. The default is `_compressed` |
+| `--replace` | Put the result in place of the original and move the original to the Trash |
+| `--keep-dates` | Copy the original's creation and modification dates |
+| `--force` | Overwrite an output file that already exists |
+
+See [Output files](/cli/output-files) for how these combine.
+
+## Running
+
+| Option | What it does |
+| --- | --- |
+| `-r`, `--recursive` | Include subfolders |
+| `-j`, `--jobs` | Number of files to process at the same time. The default is 1 |
+| `--dry-run` | Print the commands that would run, without running them |
+| `--json` | Print one JSON object per file |
+| `--quiet` | Print errors only |
+| `--verbose` | Print each command as it runs |
+
+See [Scripting](/cli/scripting) for the JSON format and exit codes.
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `compresto <files or folders>` | Compress or convert files |
+| `compresto auth login` | Sign in with your license |
+| `compresto auth status` | Show the signed-in license |
+| `compresto auth logout` | Sign out on this Mac |
+| `compresto doctor` | Check that the required tools are installed |
+| `compresto completion zsh` | Print a shell completion script. Homebrew installs these for you |
+| `compresto --version` | Print the version |

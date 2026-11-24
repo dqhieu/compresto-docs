@@ -1,0 +1,43 @@
+---
+title: "Output files"
+description: "Where the compresto command saves compressed files, how they are named, and how to replace the originals."
+icon: 'folder-open'
+---
+
+By default the compressed file is saved next to the original, with `_compressed` added to its name.
+
+| Command | Result |
+| --- | --- |
+| `compresto video.mp4` | `video_compressed.mp4` |
+| `compresto video.mp4 --suffix -small` | `video-small.mp4` |
+| `compresto video.mp4 --to gif` | `video.gif` |
+| `compresto video.mp4 -o ~/Desktop/final.mp4` | `~/Desktop/final.mp4` |
+| `compresto video.mp4 photo.png -o ~/Compressed` | `~/Compressed/video.mp4` and `~/Compressed/photo.png` |
+| `compresto video.mp4 --replace` | `video.mp4`, with the original in the Trash |
+
+## Naming rules
+
+- **Same format:** the suffix is added, so the original is never overwritten.
+- **Converted with `--to`:** the file keeps its name and gets the new extension. Add `--suffix` if you want one anyway.
+- **Output folder:** files keep their original names. The folder is created if it doesn't exist.
+- **Output file:** `-o clip.gif` on its own is enough to convert to that format.
+
+## Existing files
+
+Compresto never overwrites an existing file unless you add `--force`. If the output name is taken, that file is reported as failed and the rest carry on.
+
+## Replace the originals
+
+`--replace` puts the compressed file where the original was and moves the original to the Trash, so you can get it back if you need to.
+
+```bash
+compresto ~/Pictures/Screenshots --replace
+```
+
+<Note>
+When a file can't be made smaller, it is skipped and the original stays exactly as it is.
+</Note>
+
+## Keep the file dates
+
+Add `--keep-dates` to give the compressed file the original's creation and modification dates. This is useful for photo libraries that sort by date.

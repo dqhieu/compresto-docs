@@ -1,0 +1,79 @@
+---
+title: "Scripting"
+description: "Use the compresto command in scripts and automation with JSON output, dry runs and exit codes."
+icon: 'code'
+---
+
+## Preview without running
+
+`--dry-run` prints the exact commands Compresto would run and where the output would go, without touching any files. It doesn't need a license.
+
+```bash
+compresto movie.mov --resolution 720 --dry-run
+```
+
+```text
+movie.mov → movie_compressed.mov
+  $ ffmpeg -v error -nostdin -y -i movie.mov -vf scale=-2:720 -c:v libx264 -crf 17 ...
+```
+
+## JSON output
+
+`--json` prints one JSON object per file as it finishes, followed by a summary.
+
+```bash
+compresto shot.png --to webp --json
+```
+
+```json
+{"type":"result","input":"shot.png","output":"shot.webp","status":"compressed","inputBytes":191214,"outputBytes":68374,"savedPercent":64.2,"seconds":0.1}
+{"compressed":1,"failed":0,"inputBytes":191214,"outputBytes":68374,"seconds":0.1,"skipped":0,"type":"summary"}
+```
+
+Each result has these fields:
+
+| Field | Meaning |
+| --- | --- |
+| `input`, `output` | File paths. `output` is missing when nothing was written |
+| `status` | `compressed`, `skipped` or `failed` |
+| `reason` | Why a file was skipped |
+| `error` | Why a file failed |
+| `inputBytes`, `outputBytes` | File sizes |
+| `savedPercent` | How much smaller the output is |
+| `seconds` | How long the file took |
+| `notes` | Anything worth knowing, such as a retry at lower quality |
+
+## Exit codes
+
+| Exit code | Meaning |
+| --- | --- |
+| `0` | Success |
+| `1` | At least one file couldn't be compressed |
+| `2` | The command was written incorrectly |
+| `3` | You aren't signed in, or the license isn't valid |
+| `4` | A required tool is missing |
+| `130` | You stopped the command with Control-C |
+
+## Quiet and verbose
+
+- `--quiet` prints errors only.
+- `--verbose` prints each underlying command as it runs.
+
+Results go to standard output and errors to standard error, so you can redirect them separately.
+
+## Example
+
+Compress every new screen recording on the Desktop and replace the originals:
+
+```bash
+#!/bin/bash
+if compresto ~/Desktop/*.mov --replace --quiet; then
+  echo "Recordings compressed"
+else
+  echo "compresto exited with code $?" >&2
+fi
+```
+
+## Signing in from a script
+
+`compresto auth login --key YOUR-LICENSE-KEY` signs in without a prompt. Each Mac you sign in on uses one device on your license, so sign out with `compresto auth logout` on machines you no longer use.

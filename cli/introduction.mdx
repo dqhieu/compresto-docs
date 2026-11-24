@@ -1,0 +1,50 @@
+---
+title: "Introduction"
+description: "Compress videos, images, GIFs and PDFs from the Terminal with the compresto command, using the same quality presets as the Mac app."
+icon: 'terminal'
+---
+
+`compresto` is the command-line version of Compresto. It runs on its own, so the Mac app doesn't need to be open, which makes it a good fit for scripts, automation and batch jobs.
+
+```bash
+compresto movie.mov
+# ✓ movie.mov → movie_compressed.mov  48.2 MB → 9.1 MB (−81%)  12.3s
+```
+
+<Note>
+The command-line tool is for macOS and needs a Compresto license, the same one you use for the Mac app. Setapp licenses can't be used with it.
+</Note>
+
+## Quick start
+
+```bash
+brew install dqhieu/tap/compresto
+compresto auth login
+compresto movie.mov
+```
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Installation" icon="download" href="/cli/installation">
+    Install with Homebrew and sign in with your license.
+  </Card>
+  <Card title="Compress files" icon="file-zipper" href="/cli/compress-files">
+    Compress videos, images, GIFs and PDFs, and convert between formats.
+  </Card>
+  <Card title="Options" icon="sliders" href="/cli/options">
+    Every option for quality, video, images and output.
+  </Card>
+  <Card title="Scripting" icon="code" href="/cli/scripting">
+    JSON output, dry runs and exit codes for automation.
+  </Card>
+</CardGroup>
+
+## What's different from the Mac app
+
+The command-line tool uses the same quality levels as the app and produces comparable results. A few things are only in the app for now:
+
+- EPUB and SVG files
+- Keeping image metadata
+- Videos with transparency
+- Presets, folder monitoring and the other workflow features

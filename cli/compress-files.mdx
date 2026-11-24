@@ -1,0 +1,105 @@
+---
+title: "Compress files"
+description: "Compress videos, images, GIFs and PDFs from the Terminal, and convert them to other formats."
+icon: 'file-zipper'
+---
+
+Pass one or more files or folders. Compresto works out what each file is and picks the right settings for it.
+
+```bash
+# A video
+compresto movie.mov
+
+# Several images at a lower quality
+compresto *.png --quality good
+
+# A PDF, as small as possible
+compresto scan.pdf --pdf-quality low
+
+# Everything in a folder and its subfolders, written to another folder
+compresto ~/Videos --recursive --output ~/Compressed
+```
+
+## Supported files
+
+| File type | Formats you can compress | Formats you can convert to |
+| --- | --- | --- |
+| Video | MP4, MOV, M4V, MKV, WebM, AVI, FLV, WMV, MPEG, TS, MTS, 3GP | `mp4`, `mov`, `webm`, `gif`, `mp3` |
+| Image | JPEG, PNG, WebP, AVIF, HEIC, TIFF, BMP, DNG | `jpg`, `png`, `webp`, `avif` |
+| GIF | GIF | |
+| PDF | PDF | |
+
+MP4, MOV, M4V, MKV and WebM videos keep their format; other videos are saved as MP4. HEIC, TIFF, BMP and DNG images are saved as JPEG. Use `--to` to choose a different format.
+
+## Convert to another format
+
+Use `--to` to change the format while compressing.
+
+```bash
+# Video to GIF
+compresto clip.mp4 --to gif --gif-fps 15 --gif-width 480
+
+# Extract the audio as MP3
+compresto interview.mov --to mp3
+
+# Images to WebP
+compresto photos/*.jpg --to webp
+```
+
+You can mix file types in one command. `--to webp` applies to the images and leaves the videos in their own format.
+
+<Note>
+Transparency is kept when you write PNG, WebP or AVIF. JPEG can't store it, so transparent areas are filled with white.
+</Note>
+
+## Quality
+
+`--quality` (or `-q`) takes the same five levels as the Mac app.
+
+| Level | Best for |
+| --- | --- |
+| `highest` | Nearly indistinguishable from the original. The default for images |
+| `high` | Great quality at a much smaller size. The default for videos and GIFs |
+| `good` | A balance of quality and size |
+| `medium` | Smaller files with visible but modest loss |
+| `acceptable` | The smallest files |
+
+PDFs have their own setting, `--pdf-quality`, with `best`, `high`, `balance` (the default) and `low`.
+
+### Aim for a file size
+
+To aim for a particular file size instead of a quality level, use `--target-size`. It works for videos and JPEG images.
+
+```bash
+compresto clip.mp4 --target-size 8MB
+compresto photo.png --to jpg --target-size 200KB
+```
+
+### When a file can't get smaller
+
+If the compressed file isn't smaller than the original, Compresto keeps the original and reports the file as skipped. Videos and GIFs are first retried at a lower quality, as in the app.
+
+## Trim and resize
+
+```bash
+# Keep only 0:10 to 0:25, at 720p, without audio
+compresto movie.mov --start 0:10 --end 0:25 --resolution 720 --no-audio
+
+# Halve the size of every image
+compresto *.jpg --resize 50%
+
+# Limit the longer side to 1600 pixels
+compresto photo.heic --max-long-edge 1600
+```
+
+See [Options](/cli/options) for the full list.
+
+## Folders and batches
+
+A folder compresses the supported files directly inside it. Add `--recursive` (or `-r`) to include subfolders, and `--jobs` (or `-j`) to work on several files at once.
+
+```bash
+compresto ~/Pictures/Screenshots -r -j 4
+```
+
+Files that already end in `_compressed` are left alone, so you can run the same command again safely.

@@ -1,0 +1,46 @@
+---
+title: "License"
+description: "Sign in and out of the compresto command, and see how it shares your license with the Mac app."
+icon: 'key'
+---
+
+The command-line tool uses the same Compresto license as the Mac app.
+
+```bash
+compresto auth login    # sign in
+compresto auth status   # show the signed-in license and devices used
+compresto auth logout   # sign out on this Mac
+```
+
+## Sharing a device with the Mac app
+
+Each license covers a set number of devices. When you run `compresto auth login` on a Mac where the Compresto app is already activated, the command-line tool shares the app's activation, so the two count as one device.
+
+If the app isn't activated on that Mac, you're asked for your license key and the Mac is activated, using one device.
+
+<Tip>
+To use both on one Mac, activate the app first, then run `compresto auth login`.
+</Tip>
+
+## Signing out
+
+`compresto auth logout` signs you out on this Mac.
+
+- If the command-line tool activated this Mac, the device is released from your license.
+- If it was sharing the app's activation, the app stays activated.
+
+## Where your key is stored
+
+Your license key is kept in the macOS Keychain.
+
+## Working offline
+
+Compresto checks your license online about once a day. If you're offline, it keeps working for 14 days from the last successful check.
+
+## Manage your devices
+
+To see or remove the devices on your license, visit [compresto.app/manage-license](https://compresto.app/manage-license).
+
+<Note>
+Setapp licenses can't be used with the command-line tool, because they don't come with a license key.
+</Note>

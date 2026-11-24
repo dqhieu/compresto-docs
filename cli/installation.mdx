@@ -1,0 +1,54 @@
+---
+title: "Installation"
+description: "Install the compresto command with Homebrew and sign in with your Compresto license."
+icon: 'download'
+---
+
+<Steps>
+  <Step title="Install with Homebrew">
+    ```bash
+    brew install dqhieu/tap/compresto
+    ```
+
+    Use the full `dqhieu/tap/compresto` name. Homebrew also installs the tools Compresto relies on: FFmpeg, Gifski, Ghostscript, pngquant, WebP and libavif.
+
+    Don't have Homebrew? Install it from [brew.sh](https://brew.sh) first.
+  </Step>
+  <Step title="Check the installation">
+    ```bash
+    compresto doctor
+    ```
+
+    You should see a check mark next to every tool, followed by **Everything is in place.**
+  </Step>
+  <Step title="Sign in">
+    ```bash
+    compresto auth login
+    ```
+
+    If the Compresto app is already activated on this Mac, you're signed in straight away and no extra device is used. Otherwise you're asked for your license key, which is in your purchase email.
+  </Step>
+</Steps>
+
+<Tip>
+Using both the app and the command-line tool on one Mac? Activate the app first, then run `compresto auth login`. The two then share a single device on your license.
+</Tip>
+
+<Info>
+**Don't have a license key?** Purchase one at [compresto.app/pricing](https://compresto.app/pricing)
+</Info>
+
+## Update
+
+```bash
+brew upgrade compresto
+```
+
+## Uninstall
+
+```bash
+compresto auth logout
+brew uninstall compresto
+```
+
+Signing out first frees the device on your license if the command-line tool activated it. See [License](/cli/license).

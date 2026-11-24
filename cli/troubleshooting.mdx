@@ -1,0 +1,34 @@
+---
+title: "Troubleshooting"
+description: "Fixes for common problems with the compresto command."
+icon: 'wrench'
+---
+
+<AccordionGroup>
+  <Accordion title="You need to log in first">
+    Run `compresto auth login`. See [License](/cli/license).
+  </Accordion>
+  <Accordion title="The license is no longer valid">
+    The license was unlinked from this Mac, or it has expired or been disabled. Run `compresto auth login` to sign in again, and check your devices at [compresto.app/manage-license](https://compresto.app/manage-license).
+  </Accordion>
+  <Accordion title="This license key is not for Compresto">
+    The key belongs to a different product. Use the key from your Compresto purchase email.
+  </Accordion>
+  <Accordion title="A tool is not installed">
+    Run `compresto doctor` to see what's missing. It prints the `brew install` command to fix it. Each tool is only needed for its own file types, so the rest keep working in the meantime.
+  </Accordion>
+  <Accordion title="The output file already exists">
+    A file with the output name is already there, usually from an earlier run. Add `--force` to replace it, or choose another name with `--output` or `--suffix`.
+  </Accordion>
+  <Accordion title="A file was skipped">
+    The compressed version wasn't smaller than the original, so the original was kept. Try a lower `--quality`, or resize with `--resolution` or `--resize`.
+  </Accordion>
+  <Accordion title="Unsupported file type">
+    The file isn't a format the command-line tool handles. See [Supported files](/cli/compress-files#supported-files). EPUB and SVG are only supported in the Mac app for now.
+  </Accordion>
+  <Accordion title="command not found: compresto">
+    Homebrew's folder isn't on your `PATH`, or the install didn't finish. Run `brew install dqhieu/tap/compresto` again and follow any instructions Homebrew prints.
+  </Accordion>
+</AccordionGroup>
+
+Still stuck? Contact us from [compresto.app](https://compresto.app).
