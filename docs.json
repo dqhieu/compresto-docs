@@ -7,6 +7,9 @@
     "light": "#3B82F6",
     "dark": "#1D4ED8"
   },
+  "fonts": {
+    "family": "Onest"
+  },
   "favicon": "/images/icon512.png",
   "navigation": {
     "tabs": [
